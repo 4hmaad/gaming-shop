@@ -3,18 +3,20 @@ import styled from "styled-components";
 const ProductContainer = styled.div`
   display: flex;
   flex-direction: column;
+  position: relative;
 `;
 
 export const ImageContainer = styled.img`
   width: 100%;
+  height: 330px;
+  object-fit: cover;
 `;
 
 export const DetailsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 1.5rem;
-  margin-bottom: 2rem;
-  position: relative;
+  padding: 2rem 0rem;
+  margin-bottom: auto;
 `;
 
 export const TitleContainer = styled.h1`
@@ -32,12 +34,12 @@ export const CategoryContainer = styled.span`
 
 export const DiscountContainer = styled.span`
   color: white;
-  padding: 0.5rem;
+  padding: 1rem;
   background: #5a9516;
   font-size: var(--text-4);
   position: absolute;
-  bottom: 0;
-  left: 4.5rem;
+  top: 0;
+  right: 0;
 `;
 
 export const PriceContainer = styled.span`

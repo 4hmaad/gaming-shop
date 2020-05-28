@@ -1,14 +1,14 @@
 import React, { Fragment } from "react";
 
 import CategoriesListContainer, {
-  CategoriesTitleContainer,
+  TitleContainer,
   CategoriesItemContainer,
 } from "./CategoriesList.styles";
 
 const CategoriesList = () => {
   return (
     <Fragment>
-      <CategoriesTitleContainer>Categories</CategoriesTitleContainer>
+      <TitleContainer>Categories</TitleContainer>
 
       <CategoriesListContainer>
         <CategoriesItemContainer>Action</CategoriesItemContainer>

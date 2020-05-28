@@ -1,0 +1,182 @@
+[
+  {
+    "id": 1,
+    "title": "Just Cause 4",
+    "imageUrl": "https://cdn1.epicgames.com/ba8062bdcc1342c0b78743e3c6242575/offer/JC4-Reloaded-860x1148-860x1148-145b58e1d3d597871b8585f824540c57-860x1148-145b58e1d3d597871b8585f824540c57.jpg?h=854&resize=1&w=640",
+    "category": "action",
+    "price": "18.99",
+    "discount": "0",
+    "makers": "Avalanche Studios | Square Enix"
+  },
+  {
+    "id": 2,
+    "title": "Assassin's Creed Unity",
+    "imageUrl": "https://cdn1.epicgames.com/epic/offer/ACU%20Portrait-1280x1420-6c61b3ddd4febe4ab5e9eb24865ee42f.png?h=854&resize=1&w=640",
+    "category": "action",
+    "price": "8.99",
+    "discount": "70",
+    "makers": "Ubisoft"
+  },
+  {
+    "id": 3,
+    "title": "Assassin's Creed Syndicate",
+    "imageUrl": "https://cdn1.epicgames.com/epic/offer/AC_Syndicate_Portrait-1280x1420-b74c2aa94670d9e97cc6ddab0a5d4dd0.png?h=854&resize=1&w=640",
+    "category": "action",
+    "price": "8.99",
+    "discount": "70",
+    "makers": "Ubisoft"
+  },
+  {
+    "id": 4,
+    "title": "Assassin's Creed: Valhalla",
+    "imageUrl": "https://cdn1.epicgames.com/400347196e674de89c23cc2a7f2121db/offer/AC%20KINGDOM%20PREORDER_STANDARD%20EDITION_EPIC_Key_Art_Portrait_640x854-640x854-288120c5573756cb988b6c1968cebd86.png?h=854&resize=1&w=640",
+    "category": "action",
+    "price": "59.99",
+    "discount": "0",
+    "makers": "Ubisoft"
+  },
+  {
+    "id": 5,
+    "title": "Predator Hunting Grounds",
+    "imageUrl": "https://cdn1.epicgames.com/5a82d5954a1943d79dc6b49cde2fe972/offer/PHG_StoreTall-2560x1440-e62fa18a59b9ae27cd6ce93eb7935c6c.jpg?h=854&resize=1&w=640",
+    "category": "action",
+    "price": "18.99",
+    "discount": "0",
+    "makers": "IllFonic | Sony Interactive Entertainment"
+  },
+  {
+    "id": 6,
+    "title": "The Division 2",
+    "imageUrl": "https://cdn1.epicgames.com/epic/offer/Diesel_product_tctd2_Portrait-Promo-(2)-1280x1420-19a6b9b120b24529d92ed1d87f1185455ceb84aa-1280x1420-4f0c658d399e26d7120aa6b04d4f77a0.jpg?h=854&resize=1&w=640",
+    "category": "action",
+    "price": "18.99",
+    "discount": "67",
+    "makers": "Massive Entertainment | Ubisoft"
+  },
+  {
+    "id": 7,
+    "title": "Red Dead Redemption 2",
+    "imageUrl": "https://cdn1.epicgames.com/epic/offer/RDR2PC1227_Epic%20Games_860x1148-860x1148-b4c2210ee0c3c3b843a8de399bfe7f5c.jpg?h=854&resize=1&w=640",
+    "category": "action",
+    "price": "47.99",
+    "discount": "20",
+    "makers": "Rockstar Games"
+  },
+  {
+    "id": 8,
+    "title": "Kingdom Come: Deliverance",
+    "imageUrl": "https://cdn1.epicgames.com/undefined/offer/EGS_WarhorseStudios_KingdomComeDeliverance_S4-510x680-ec915782c8a2d6f1d64c028dd74a398f.jpg?h=854&resize=1&w=640",
+    "category": "action",
+    "price": "11.99",
+    "discount": "0",
+    "makers": "Warhorse Studios"
+  },
+  {
+    "id": 9,
+    "title": "Tom Clancy's Ghost Recon Wildlands",
+    "imageUrl": "https://cdn1.epicgames.com/epic/offer/GhostReconWildlands_PortraitPromo-974x1080-a1bf09c22e6c1fbdf69b52bc3e4d05a7.jpg?h=854&resize=1&w=640",
+    "category": "shooting",
+    "price": "17.99",
+    "discount": "50",
+    "makers": "Ubisoft"
+  },
+  {
+    "id": 10,
+    "title": "Tom Clancy's Ghost Recon Breakpoint",
+    "imageUrl": "https://cdn1.epicgames.com/undefined/offer/Target_Store_Portrait_Promo-1280x1420-b26ff533005794b5c3c70a2b8a1f7d33.jpg?h=854&resize=1&w=640",
+    "category": "shooting",
+    "price": "21.77",
+    "discount": "67",
+    "makers": "Ubisoft"
+  },
+  {
+    "id": 11,
+    "title": "Fortnite",
+    "imageUrl": "https://cdn1.epicgames.com/epic/offer/12BR_EGS_Launcher_Blade_Vertical-400x530-b67b662cd6c6475815c54c7dfb9c5c5c.jpg?h=854&resize=1&w=640",
+    "category": "shooting",
+    "price": "0",
+    "discount": "0",
+    "makers": "Epic Games"
+  },
+  {
+    "id": 12,
+    "title": "World War Z GOTY",
+    "imageUrl": "https://cdn1.epicgames.com/wombat/offer/WWZ-GOTY-Edition_EpicGames_PortraitImage_860x1148-860x1148-6ad932230150a3580974ba0a719bcdaa.jpg?h=854&resize=1&w=640",
+    "category": "shooting",
+    "price": "20.99",
+    "discount": "0",
+    "makers": "Saber Interactive"
+  },
+  {
+    "id": 13,
+    "title": "The Crew 2",
+    "imageUrl": "https://cdn1.epicgames.com/undefined/offer/S2-TC2-1280x1440-93c82474c04d9f96218202d425973483.jpg?h=854&resize=1&w=640",
+    "category": "racing",
+    "price": "14.99",
+    "discount": "75",
+    "makers": "Ubisoft"
+  },
+  {
+    "id": 14,
+    "title": "Trails Rising",
+    "imageUrl": "https://cdn1.epicgames.com/undefined/offer/Store_Portrait_Promo-1280x1420-6d68cd7b0ff1fd2b0dceca32cc4f397c.jpg?h=854&resize=1&w=640",
+    "category": "racing",
+    "price": "9.99",
+    "discount": "60",
+    "makers": "Ubisoft"
+  },
+  {
+    "id": 15,
+    "title": "The Witcher 3: Wild Hunt - Game of the Year Edition",
+    "imageUrl": "https://cdn1.epicgames.com/14ee004dadc142faaaece5a6270fb628/offer/EGS_TheWitcher3WildHuntGameoftheYear_CDPROJEKTRED_S2-1200x1600-d887e1b749d11e8876996227e4de5c89.jpg?h=854&resize=1&w=640",
+    "category": "action",
+    "price": "14.98",
+    "discount": "70",
+    "makers": "CD PROJEKT RED"
+  },
+  {
+    "id": 16,
+    "title": "Death Stranding",
+    "imageUrl": "https://cdn1.epicgames.com/epic/offer/EGS_KojimaProductions_DeathStranding_S2-1280x1440-5a96ed93665756b28f6d70e65266e64c.jpg?h=854&resize=1&w=640",
+    "category": "strategy",
+    "price": "59.99",
+    "discount": "0",
+    "makers": "Valve"
+  },
+  {
+    "id": 17,
+    "title": "Grand Theft Auto V: Premium Edition",
+    "imageUrl": "https://cdn1.epicgames.com/0584d2013f0149a791e7b9bad0eec102/offer/GTAV_EGS_Artwork_1200x1600_Portrait%20Store%20Banner-1200x1600-382243057711adf80322ed2aeea42191.jpg?h=854&resize=1&w=640",
+    "category": "adventures",
+    "price": "14.99",
+    "discount": "50",
+    "makers": "Rockstar Games"
+  },
+  {
+    "id": 18,
+    "title": "Sherlock Holmes The Devil's Daughter",
+    "imageUrl": "https://cdn1.epicgames.com/undefined/offer/Sherlock_Portrait-1280x1440-16513cafd71b763d3b309281d36a381c.jpg?h=854&resize=1&w=640",
+    "category": "puzzle",
+    "price": "22.99",
+    "discount": "0",
+    "makers": "Frogwares | Bigben Interactive"
+  },
+  {
+    "id": 19,
+    "title": "The Witness",
+    "imageUrl": "https://cdn1.epicgames.com/undefined/offer/TheWitness_Promo__S3-1280x1440-2162531db1b9bfe233a9752d32528982.jpg?h=854&resize=1&w=640",
+    "category": "puzzle",
+    "price": "27.99",
+    "discount": "0",
+    "makers": "Jonathan Blow | Thekla, Inc."
+  },
+  {
+    "id": 20,
+    "title": "Surviving the Aftermath",
+    "imageUrl": "https://cdn1.epicgames.com/95b4d5a753d042678f775d5e1eb5ab25/offer/EGS_SurvivingtheAftermath_IceflakeStudiosOy_S2-1200x1600-adc91ea02c4cdd2ad9e17fe5a87b5ada.jpg?h=854&resize=1&w=640",
+    "category": "strategy",
+    "price": "7.99",
+    "discount": "20",
+    "makers": "Iceflake Studios Oy | Paradox Interactive AB"
+  }
+]

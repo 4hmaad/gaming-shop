@@ -22,6 +22,7 @@ export const TopBarContainer = styled.div`
 export const TitleContainer = styled.h1`
   font-size: var(--text-1);
   font-weight: 400;
+  border-bottom: 2px solid var(--yellow);
 `;
 
 export default HomePageContainer;

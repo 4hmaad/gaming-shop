@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const FormInputContainer = styled.input`
-  background: var(--imGoingToFaint);
+  background: var(--lightGrey-2);
   color: var(--black);
   font-size: var(--text-3);
   border: 2px solid var(--lightGrey);
