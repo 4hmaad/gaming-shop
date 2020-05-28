@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const HeaderContainer = styled.div`
   grid-area: header;
@@ -9,6 +10,7 @@ const HeaderContainer = styled.div`
   margin-bottom: 5rem;
   padding: 0rem 8rem;
   border-bottom: 4px solid var(--yellow);
+  user-select: none;
 `;
 
 export const LogoContainer = styled.h1`
@@ -17,6 +19,7 @@ export const LogoContainer = styled.h1`
   letter-spacing: 2px;
   position: relative;
   z-index: 1;
+  cursor: pointer;
 
   &::after {
     content: "";
@@ -55,7 +58,7 @@ export const MenuContainer = styled.div`
   font-size: 1.6rem;
 `;
 
-export const MenuItemContainer = styled.a`
+export const MenuItemContainer = styled(Link)`
   color: var(--black);
   text-decoration: none;
   text-transform: uppercase;

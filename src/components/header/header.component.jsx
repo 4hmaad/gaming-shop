@@ -1,4 +1,5 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 
 import HeaderComponent, {
   LogoContainer,
@@ -6,18 +7,18 @@ import HeaderComponent, {
   MenuItemContainer,
 } from "./Header.styles";
 
-import { ReactComponent as Logo } from "../../assets/cart.svg";
+import { ReactComponent as CartIcon } from "../../assets/cart.svg";
 
-const Header = () => (
+const Header = ({ history }) => (
   <HeaderComponent>
-    <LogoContainer>Gamify</LogoContainer>
+    <LogoContainer onClick={() => history.push("/")}>Gamify</LogoContainer>
     <MenuContainer>
-      <MenuItemContainer href="#">sign in</MenuItemContainer>
-      <MenuItemContainer href="#">
-        <Logo style={{ width: "28px", height: "28px" }} />
+      <MenuItemContainer to="/auth">sign in</MenuItemContainer>
+      <MenuItemContainer to="/cart">
+        <CartIcon style={{ width: "28px", height: "28px" }} />
       </MenuItemContainer>
     </MenuContainer>
   </HeaderComponent>
 );
 
-export default Header;
+export default withRouter(Header);
