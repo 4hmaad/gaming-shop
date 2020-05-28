@@ -2,10 +2,11 @@ import styled from "styled-components";
 
 const HeaderContainer = styled.div`
   grid-area: header;
-  height: 6rem;
+  height: 7rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 5rem;
 `;
 
 export const LogoContainer = styled.h1`

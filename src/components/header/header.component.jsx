@@ -4,11 +4,9 @@ import HeaderComponent, {
   LogoContainer,
   MenuContainer,
   MenuItemContainer,
-} from "./header.styles";
+} from "./Header.styles";
 
 import { ReactComponent as Logo } from "../../assets/cart.svg";
-
-import CustomInputContainer from "./../customInput/customInput.component";
 
 const Header = () => (
   <HeaderComponent>
