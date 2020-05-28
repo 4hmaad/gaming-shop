@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
 const FormInputContainer = styled.input`
-  background: var(--grey-1);
+  background: var(--imGoingToFaint);
   color: var(--black);
-  font-size: 1.6rem;
-  border: 2px solid var(--grey-3);
+  font-size: var(--text-3);
+  border: 2px solid var(--lightGrey);
   max-width: 30rem;
   width: 100%;
   padding: 1rem 2rem;

@@ -1,5 +1,14 @@
 import React from "react";
 
-const Sidebar = () => <h1>Sidebar</h1>;
+import SidebarContainer, { TitleContainer } from "./Sidebar.styles";
+
+import CategoriesList from "./../categories-list/CategoriesList.component";
+
+const Sidebar = () => (
+  <SidebarContainer>
+    <TitleContainer>Filters</TitleContainer>
+    <CategoriesList />
+  </SidebarContainer>
+);
 
 export default Sidebar;

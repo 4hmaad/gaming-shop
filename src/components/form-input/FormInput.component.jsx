@@ -1,5 +1,5 @@
 import React from "react";
-import FormInputContainer from "./customInput.styles";
+import FormInputContainer from "./FormInput.styles";
 
 const FormInput = (props) => {
   return <FormInputContainer {...props} />;

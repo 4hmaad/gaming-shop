@@ -10,11 +10,11 @@ import { ReactComponent as Logo } from "../../assets/cart.svg";
 
 const Header = () => (
   <HeaderComponent>
-    <LogoContainer> Gamify </LogoContainer>
+    <LogoContainer>Gamify</LogoContainer>
     <MenuContainer>
       <MenuItemContainer href="#">sign in</MenuItemContainer>
       <MenuItemContainer href="#">
-        <Logo style={{ width: "35px", height: "35px" }} />
+        <Logo style={{ width: "28px", height: "28px" }} />
       </MenuItemContainer>
     </MenuContainer>
   </HeaderComponent>

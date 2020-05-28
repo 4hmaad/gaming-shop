@@ -1,10 +1,15 @@
 :root {
   --black: #000000;
   --white: #ffffff;
+  --yellow: #ffc600;
 
-  --grey-1: #f7f7f7;
-  --grey-2: #eee;
-  --grey-3: #e6e6e6;
+  --lightGrey: #d8d8d8;
+  --imGoingToFaint: #fbfbfb;
+
+  --text-1: 2rem;
+  --text-2: 1.8rem;
+  --text-3: 1.6rem;
+  --text-4: 1.4rem;
 }
 
 * {
@@ -36,5 +41,16 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-size: 1.4rem;
   box-sizing: border-box;
-  padding: 3rem 8rem;
+
+  &::-webkit-scrollbar-track {
+    background-color: var(--imGoingToFaint);
+  }
+
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--lightGrey);
+  }
 }

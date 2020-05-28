@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import Header from "../../components/header/Header.component";
 
 import HomePageContainer, {
@@ -6,24 +6,26 @@ import HomePageContainer, {
   TitleContainer,
 } from "./Homepage.styles";
 
-import FormInput from "../../components/customInput/customInput.component";
+import FormInput from "../../components/form-input/FormInput.component";
 import Sidebar from "../../components/sidebar/Sidebar.component";
-import CategoryItem from "../../components/category-item/category-item.component";
+import Directory from "../../components/directory/Directory.component";
 
 const HomePage = () => {
   return (
-    <HomePageContainer>
+    <Fragment>
       <Header />
 
-      <TopBarContainer>
-        <TitleContainer>Browse</TitleContainer>
+      <HomePageContainer>
+        <TopBarContainer>
+          <TitleContainer>Browse</TitleContainer>
 
-        <FormInput placeholder="Search" />
-      </TopBarContainer>
+          <FormInput placeholder="Search" />
+        </TopBarContainer>
 
-      <Sidebar />
-      <CategoryItem />
-    </HomePageContainer>
+        <Sidebar />
+        <Directory />
+      </HomePageContainer>
+    </Fragment>
   );
 };
 
