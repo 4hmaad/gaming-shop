@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 
 const PrimaryStyle = css`
-  border: 2px solid var(--black);
+  border: 1px solid var(--black);
   background: var(--black);
   color: var(--white);
   transition: opacity 0.2s;
@@ -11,7 +11,7 @@ const PrimaryStyle = css`
   }
 `;
 const PrimaryInvertedStyle = css`
-  border: 2px solid var(--black);
+  border: 1px solid var(--black);
   background: var(--white);
   color: var(--black);
   transition: all 0.2s;
@@ -67,8 +67,9 @@ const getButtonWidth = (props) => {
 
 const CustomButtonContainer = styled.button`
   font-family: "Oswald", "Segoe UI", sans-serif;
-  padding: 1.5rem 4rem;
-  text-align: center;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: center;
   text-transform: uppercase;
   font-weight: 400;
   font-size: var(--text-2);
