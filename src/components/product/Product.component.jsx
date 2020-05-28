@@ -11,13 +11,13 @@ import ProductContainer, {
 
 import CustomButton from "../custom-button/CustomButton.component";
 
-const Product = ({ title, imageUrl, price, discount, category, makers }) => (
+const Product = ({ title, imageUrl, price, discount, category, developer }) => (
   <ProductContainer>
     <ImageContainer src={imageUrl} alt={title} />
     <DetailsContainer>
       <TitleContainer>{title}</TitleContainer>
 
-      <CategoryContainer>{makers}</CategoryContainer>
+      <CategoryContainer>{developer}</CategoryContainer>
 
       {discount != "0" ? (
         <DiscountContainer>-{discount}%</DiscountContainer>
