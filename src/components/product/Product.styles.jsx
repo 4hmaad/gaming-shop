@@ -10,6 +10,7 @@ export const ImageContainer = styled.img`
   width: 100%;
   height: 33rem;
   object-fit: cover;
+  object-position: center top;
 
   @media (max-width: 56.25em) {
     height: 28rem;

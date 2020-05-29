@@ -24,7 +24,9 @@ const Product = ({ title, imageUrl, price, discount, category, developer }) => (
       ) : (
         ""
       )}
-      <PriceContainer>${price}</PriceContainer>
+      <PriceContainer>
+        {parseFloat(price) > 0 ? `$${price}` : "FREE"}
+      </PriceContainer>
     </DetailsContainer>
     <CustomButton primary inverted>
       Add to Cart

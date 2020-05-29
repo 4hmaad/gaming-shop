@@ -73,7 +73,7 @@ const CustomButtonContainer = styled.button`
   text-transform: uppercase;
   font-weight: 400;
   font-size: var(--text-2);
-  letter-spacing: 2px;
+  letter-spacing: 0.2rem;
   border: none;
   outline: none;
   cursor: pointer;
