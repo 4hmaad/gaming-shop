@@ -3,9 +3,8 @@ import React from "react";
 import CartProductContainer, {
   ImageContainer,
   TitleContainer,
-  OptionContainer,
-  ArrowIconContainer,
-  CloseIconContainer,
+  TextContainer,
+  IconButton,
 } from "./CartProduct.styles";
 
 const CartProduct = () => {
@@ -16,16 +15,13 @@ const CartProduct = () => {
         alt="game"
       />
       <TitleContainer>Just Cause 4</TitleContainer>
-      <OptionContainer>
-        <ArrowIconContainer
-          onClick={() => console.log("Back is clicked")}
-          left
-        />
-        4
-        <ArrowIconContainer onClick={() => console.log("Next is clicked")} />
-      </OptionContainer>
-      <OptionContainer>$19.99</OptionContainer>
-      <OptionContainer>✕</OptionContainer>
+      <TextContainer>
+        <IconButton left>❮</IconButton>4<IconButton>❯</IconButton>
+      </TextContainer>
+      <TextContainer>$19.99</TextContainer>
+      <TextContainer>
+        <IconButton>✕</IconButton>
+      </TextContainer>
     </CartProductContainer>
   );
 };

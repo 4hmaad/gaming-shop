@@ -1,7 +1,10 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-import { ReactComponent as ArrowIcon } from "../../assets/next.svg";
-import { ReactComponent as CloseIcon } from "../../assets/close.svg";
+const flexCenterStyle = css`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
 const CartProductContainer = styled.li`
   padding: 2rem 0rem;
@@ -10,9 +13,7 @@ const CartProductContainer = styled.li`
   border-bottom: 1px solid var(--lightGrey);
 
   & > * {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    ${flexCenterStyle}
     padding: 0rem 0.5rem;
   }
 `;
@@ -27,26 +28,24 @@ export const TitleContainer = styled.h1`
   font-weight: 300;
   text-wrap: wrap;
 `;
-export const OptionContainer = styled.span`
+
+export const TextContainer = styled.div`
+  ${flexCenterStyle}
   font-size: var(--text-1);
   font-weight: 300;
 `;
 
-export const ArrowIconContainer = styled(ArrowIcon)`
+export const IconButton = styled.button`
   ${(props) => {
-    return props.left
-      ? "margin-right: 2rem; transform: rotate(180deg);"
-      : "margin-left: 2rem;";
+    return props.left ? "margin-right: 2rem;" : "margin-left: 2rem;";
   }}
   cursor: pointer;
-  width: 1.8rem;
-  height: 1.8rem;
-`;
-
-export const CloseIconContainer = styled(CloseIcon)`
-  cursor: pointer;
-  width: 1.8rem;
-  height: 1.8rem;
+  font-size: var(--text-1);
+  color: var(--black);
+  font-weight: 300;
+  background: var(--white);
+  border: 0;
+  padding: 0.2rem 0.5rem;
 `;
 
 export default CartProductContainer;
