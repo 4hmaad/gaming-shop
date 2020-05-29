@@ -3,6 +3,7 @@ import React from "react";
 import HomePageContainer, {
   TopBarContainer,
   TitleContainer,
+  ContentContainer,
 } from "./Homepage.styles";
 
 import FormInput from "../../components/form-input/FormInput.component";
@@ -17,9 +18,10 @@ const HomePage = () => {
 
         <FormInput placeholder="Search" />
       </TopBarContainer>
-
-      <Sidebar />
-      <Directory />
+      <ContentContainer>
+        <Sidebar />
+        <Directory />
+      </ContentContainer>
     </HomePageContainer>
   );
 };

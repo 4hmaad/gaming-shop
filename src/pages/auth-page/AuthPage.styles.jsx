@@ -5,11 +5,7 @@ const AuthPageContainer = styled.div`
 `;
 
 export const TitleContainer = styled.h1`
-  font-size: var(--text-0);
-  max-width: 13rem;
-  text-align: center;
-  font-weight: 400;
-  border-bottom: 2px solid var(--yellow);
+  ${(props) => props.theme.pageTitle}
 `;
 
 export const FormsContainer = styled.div`

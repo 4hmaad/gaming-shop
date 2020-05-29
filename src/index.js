@@ -7,7 +7,15 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
 const theme = {
-  pageWidth: `max-width: 150rem; margin: 0 auto; padding:0rem 1rem;`,
+  pageWidth: `max-width: 150rem; 
+              margin: 0 auto; 
+              padding:0rem 1rem;
+  `,
+  pageTitle: `display:inline-block;
+              font-size: var(--text-0);
+              font-weight: 400;
+              border-bottom: 2px solid var(--yellow);
+  `,
 };
 
 ReactDOM.render(

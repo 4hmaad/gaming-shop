@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-const DirectoryContainer = styled.div`
-  grid-area: content;
-`;
+const DirectoryContainer = styled.div``;
 
 export default DirectoryContainer;
