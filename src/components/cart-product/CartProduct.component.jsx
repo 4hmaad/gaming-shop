@@ -25,9 +25,7 @@ const CartProduct = () => {
         <ArrowIconContainer onClick={() => console.log("Next is clicked")} />
       </OptionContainer>
       <OptionContainer>$19.99</OptionContainer>
-      <OptionContainer>
-        <CloseIconContainer />
-      </OptionContainer>
+      <OptionContainer>✕</OptionContainer>
     </CartProductContainer>
   );
 };
