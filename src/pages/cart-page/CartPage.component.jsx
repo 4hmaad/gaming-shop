@@ -1,8 +1,14 @@
 import React from "react";
-import CartPageContainer from "./CartPage.styles";
+import Cart from "../../components/cart/Cart.component";
+import CartPageContainer, { TitleContainer } from "./CartPage.styles";
 
 const CartPage = () => {
-  return <CartPageContainer>Cart Page</CartPageContainer>;
+  return (
+    <CartPageContainer>
+      <TitleContainer> Shopping Cart </TitleContainer>
+      <Cart />
+    </CartPageContainer>
+  );
 };
 
 export default CartPage;
