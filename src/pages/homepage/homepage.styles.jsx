@@ -8,7 +8,7 @@ const HomePageContainer = styled.div`
     "top top"
     "content sidebar"
     "footer footer";
-  padding: 3rem 8rem;
+  ${(props) => props.theme.pageWidth}
 `;
 
 export const TopBarContainer = styled.div`

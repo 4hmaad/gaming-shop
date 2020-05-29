@@ -29,10 +29,6 @@ html {
 }
 
 body {
-  // font-family: "Roboto Condensed", -apple-system, BlinkMacSystemFont, "Segoe UI",
-  //   "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
-  //   "Helvetica Neue", sans-serif;
-
   font-family: "Oswald", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
     "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -53,5 +49,22 @@ body {
 
   &::-webkit-scrollbar-thumb {
     background-color: var(--lightGrey);
+  }
+}
+
+@media (max-width: 75em) {
+  html {
+    font-size: 54%;
+  }
+}
+@media (max-width: 56.25em) {
+  html {
+    font-size: 50%;
+  }
+}
+
+@media (max-width: 37.5em) {
+  html {
+    font-size: 44%;
   }
 }

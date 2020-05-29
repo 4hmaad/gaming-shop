@@ -8,8 +8,16 @@ const ProductContainer = styled.div`
 
 export const ImageContainer = styled.img`
   width: 100%;
-  height: 330px;
+  height: 33rem;
   object-fit: cover;
+
+  @media (max-width: 56.25em) {
+    height: 28rem;
+  }
+
+  @media (max-width: 37.5em) {
+    height: 20rem;
+  }
 `;
 
 export const DetailsContainer = styled.div`
