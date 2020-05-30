@@ -12,4 +12,5 @@ const store = createStore(
   reducers,
   composeEnhancers(applyMiddleware(...middlewareArray))
 );
+
 export default store;

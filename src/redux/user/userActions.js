@@ -1,16 +1,8 @@
 import userTypes from "./userTypes";
 
-const SigningIn = () => {
+export const setSignedUser = (signedUser) => {
   return {
-    type: userTypes.SIGNING_IN,
+    type: userTypes.SET_SIGNED_USER,
+    payload: signedUser,
   };
-};
-
-/**
- * TODO: make a request to firebase auth
- */
-const SignIn = () => (dispatch) => {
-  dispatch(SigningIn());
-
-  // code
 };

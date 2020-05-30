@@ -1,4 +1,5 @@
 import * as firebase from "firebase/app";
+import "firebase/auth";
 import "firebase/firestore";
 
 var firebaseConfig = {
@@ -15,3 +16,29 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 export const firestore = firebase.firestore();
+export const auth = firebase.auth();
+
+const googleProvider = new firebase.auth.GoogleAuthProvider();
+export const signInWithGoogle = () => auth.signInWithPopup(googleProvider);
+
+export const createUserDocument = async ({
+  uid,
+  displayName,
+  email,
+  photoURL,
+}) => {
+  const userRef = firestore.doc(`users/${uid}`);
+  const snapShot = await userRef.get();
+
+  if (!snapShot.exists) {
+    userRef.set({
+      displayName,
+      email,
+      photoURL,
+    });
+  }
+
+  return userRef;
+};
+
+export default firebase;
