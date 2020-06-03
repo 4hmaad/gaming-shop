@@ -1,44 +1,35 @@
 import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
 
-import ProductsContainer from "./Products.styles";
+import { fetchProducts } from "../../redux/product/productActions";
+
+import ProductsContainer, { SpinnerContainer } from "./Products.styles";
 import Product from "../product/Product.component";
-import ProductsData from "./Products.data.json";
 
-import { firestore } from "./../../firebase/firebase.utils";
-
-const Products = (props) => {
-  const [products, setProducts] = useState([]);
-
+const Products = ({ fetchProducts, products }) => {
   useEffect(() => {
-    getProducts();
+    fetchProducts();
   }, []);
 
-  const getProducts = async () => {
-    const productsRef = firestore.collection("products");
-
-    // const snapShot = await productsRef.get();
-
-    productsRef.onSnapshot((snapShot) => {
-      const data = [];
-      snapShot.docs.map((doc) => {
-        const id = doc.id;
-        data.push({
-          id,
-          ...doc.data(),
-        });
+  const renderProducts = (products) => {
+    if (products.loading === false) {
+      return products.data.map((product) => {
+        return <Product key={product.id} {...product} />;
       });
+    }
 
-      setProducts(data);
-    });
+    return <SpinnerContainer />;
   };
 
-  return (
-    <ProductsContainer>
-      {products.map((product) => {
-        return <Product key={product.id} {...product} />;
-      })}
-    </ProductsContainer>
-  );
+  return <ProductsContainer>{renderProducts(products)}</ProductsContainer>;
 };
 
-export default Products;
+const mapStateToProps = ({ products }) => {
+  return {
+    products,
+  };
+};
+
+export default connect(mapStateToProps, {
+  fetchProducts,
+})(Products);
