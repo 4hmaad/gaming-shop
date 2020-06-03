@@ -1,6 +1,6 @@
 import { firestore } from "../../firebase/firebase.utils";
 
-export const fetchProducts = () => async (dispatch) => {
+export const fetchProducts = () => (dispatch) => {
   dispatch({ type: "FETCHING_PRODUCTS" });
 
   const productRef = firestore.collection("products");
