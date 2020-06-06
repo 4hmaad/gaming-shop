@@ -2,7 +2,7 @@ import styled, { keyframes } from "styled-components";
 
 const ProductsContainer = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(auto-fill, minmax(17.96rem, 1fr));
   grid-auto-rows: 1fr;
   grid-column-gap: 1.5rem;
   grid-row-gap: 5rem;
