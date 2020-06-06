@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import { fetchProducts } from "../../redux/product/productActions";
@@ -6,12 +6,12 @@ import { fetchProducts } from "../../redux/product/productActions";
 import ProductsContainer, { SpinnerContainer } from "./Products.styles";
 import Product from "../product/Product.component";
 
-const Products = ({ fetchProducts, products }) => {
-  useEffect(() => {
-    fetchProducts();
-  }, []);
+class Products extends Component {
+  componentDidMount() {
+    this.props.fetchProducts();
+  }
 
-  const renderProducts = (products) => {
+  renderProducts = (products) => {
     if (products.loading === false) {
       return products.data.map((product) => {
         return <Product key={product.id} {...product} />;
@@ -21,8 +21,14 @@ const Products = ({ fetchProducts, products }) => {
     return <SpinnerContainer />;
   };
 
-  return <ProductsContainer>{renderProducts(products)}</ProductsContainer>;
-};
+  render() {
+    return (
+      <ProductsContainer>
+        {this.renderProducts(this.props.products)}
+      </ProductsContainer>
+    );
+  }
+}
 
 const mapStateToProps = ({ products }) => {
   return {
