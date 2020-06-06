@@ -1,38 +1,30 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { setSignedUser } from "../../redux/user/userActions";
 import { auth } from "./../../firebase/firebase.utils";
 
-import HeaderComponent, {
-  LogoContainer,
-  MenuContainer,
-  MenuItemContainer,
-} from "./Header.styles";
-
+import HeaderContainer, { LogoContainer, MenuContainer } from "./Header.styles";
 import { ReactComponent as CartIcon } from "../../assets/cart.svg";
 
-const Header = ({ history, signedUser, setSignedUser }) => (
-  <HeaderComponent>
-    <LogoContainer onClick={() => history.push("/")}>Gamify</LogoContainer>
+const Header = ({ signedUser }) => (
+  <HeaderContainer>
+    <LogoContainer to="/">Gamify</LogoContainer>
     <MenuContainer>
       {!signedUser ? (
-        <MenuItemContainer to="/auth">sign in</MenuItemContainer>
+        <Link to="/auth">sign in</Link>
       ) : (
-        <MenuItemContainer onClick={() => auth.signOut()}>
-          sign out
-        </MenuItemContainer>
+        <div onClick={() => auth.signOut()}>sign out</div>
       )}
 
-      <MenuItemContainer to="/cart">
-        <CartIcon style={{ width: "28px", height: "28px" }} />
-      </MenuItemContainer>
+      <Link to="/cart">
+        <CartIcon style={{ width: "2.8rem", height: "2.8rem" }} />
+      </Link>
     </MenuContainer>
-  </HeaderComponent>
+  </HeaderContainer>
 );
 
 const mapStateToProps = ({ user }) => {
   return user;
 };
 
-export default connect(mapStateToProps, { setSignedUser })(withRouter(Header));
+export default connect(mapStateToProps)(Header);
