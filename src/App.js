@@ -1,27 +1,26 @@
 import React, { Fragment, Component } from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
+import { connect } from "react-redux";
 
 import { auth, createUserDocument } from "./firebase/firebase.utils";
 
 import HomePage from "./pages/homepage/Homepage.component";
-import CartPage from "./pages/cart-page/CartPage.component";
+import CheckoutPage from "./pages/checkout-page/CheckoutPage.component";
 import AuthPage from "./pages/auth-page/AuthPage.component";
 import Header from "./components/header/Header.component";
 
+import { setSignedUser } from "./redux/user/userActions";
+
 class App extends Component {
   componentDidMount() {
-    auth.onAuthStateChanged(async (signedUser) => {
-      console.log(signedUser);
+    auth.onAuthStateChanged(async (userAuth) => {
+      this.props.setSignedUser(userAuth);
 
-      this.props.setSignedUser(signedUser);
-
-      if (signedUser) {
-        const userRef = await createUserDocument(signedUser);
+      if (userAuth) {
+        const userRef = await createUserDocument(userAuth);
         userRef.onSnapshot((snapShot) => {
-          let id = snapShot.id;
-          console.table(snapShot.data());
           this.props.setSignedUser({
-            id,
+            id: snapShot.id,
             ...snapShot.data(),
           });
         });
@@ -36,12 +35,22 @@ class App extends Component {
 
         <Switch>
           <Route exact path="/" component={HomePage} />
-          <Route path="/cart" component={CartPage} />
-          <Route path="/auth" component={AuthPage} />
+          <Route exact path="/checkout" component={CheckoutPage} />
+          <Route
+            exact
+            path="/auth"
+            render={() =>
+              this.props.signedUser ? <Redirect to="/" /> : <AuthPage />
+            }
+          />
         </Switch>
       </Fragment>
     );
   }
 }
 
-export default App;
+const mapStateToProps = ({ user }) => {
+  return user;
+};
+
+export default connect(mapStateToProps, { setSignedUser })(App);
