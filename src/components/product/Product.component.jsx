@@ -1,4 +1,7 @@
 import React from "react";
+import { connect } from "react-redux";
+
+import { addItem } from "./../../redux/cart/cartActions";
 
 import ProductContainer, {
   ImageContainer,
@@ -11,27 +14,30 @@ import ProductContainer, {
 
 import CustomButton from "../custom-button/CustomButton.component";
 
-const Product = ({ title, imageUrl, price, discount, category, developer }) => (
-  <ProductContainer>
-    <ImageContainer src={imageUrl} alt={title} />
-    <DetailsContainer>
-      <TitleContainer>{title}</TitleContainer>
+const Product = ({ product, addItem }) => {
+  const { title, imageUrl, price, discount, developer } = product;
 
-      <CategoryContainer>{developer}</CategoryContainer>
+  return (
+    <ProductContainer>
+      <ImageContainer src={imageUrl} alt={title} />
+      <DetailsContainer>
+        <TitleContainer>{title}</TitleContainer>
 
-      {discount != "0" ? (
-        <DiscountContainer>-{discount}%</DiscountContainer>
-      ) : (
-        ""
-      )}
-      <PriceContainer>
-        {parseFloat(price) > 0 ? `$${price}` : "FREE"}
-      </PriceContainer>
-    </DetailsContainer>
-    <CustomButton primary inverted>
-      Add to Cart
-    </CustomButton>
-  </ProductContainer>
-);
+        <CategoryContainer>{developer}</CategoryContainer>
 
-export default Product;
+        {discount != "0" ? (
+          <DiscountContainer>-{discount}%</DiscountContainer>
+        ) : (
+          ""
+        )}
+        <PriceContainer>
+          {parseFloat(price) > 0 ? `$${price}` : "FREE"}
+        </PriceContainer>
+      </DetailsContainer>
+      <CustomButton primary inverted onClick={() => addItem(product)}>
+        Add to Cart
+      </CustomButton>
+    </ProductContainer>
+  );
+};
+export default connect(null, { addItem })(Product);
