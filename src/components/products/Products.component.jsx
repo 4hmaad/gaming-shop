@@ -12,18 +12,37 @@ class Products extends Component {
   }
 
   renderProducts = () => {
-    const { data, filters, loading } = this.props.products;
+    const { data, filters, loading, searchQuery } = this.props.products;
+    var productsToDisplay;
 
-    const productsToDisplay = data.filter((product) => {
-      const productCategory = product.category.toLowerCase();
+    if (searchQuery) {
+      productsToDisplay = data.filter((product) => {
+        const searchCondition = [
+          ...product.title.toLowerCase().split(" "),
+          ...product.developer.toLowerCase().split(" "),
+        ];
 
-      return filters.length ? filters.includes(productCategory) : product;
-    });
+        const doesExist = searchQuery
+          .toLowerCase()
+          .split(" ")
+          .find((word) => searchCondition.includes(word));
 
-    if (loading === false) {
+        return doesExist ? true : false;
+      });
+    } else {
+      productsToDisplay = data.filter((product) => {
+        const productCategory = product.category.toLowerCase();
+
+        return filters.length ? filters.includes(productCategory) : product;
+      });
+    }
+
+    if (loading === false && productsToDisplay.length) {
       return productsToDisplay.map((product) => {
         return <Product key={product.id} product={product} />;
       });
+    } else if (loading === false && !productsToDisplay.length) {
+      return <h2> No Games Found </h2>;
     }
 
     return <SpinnerContainer />;

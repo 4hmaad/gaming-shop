@@ -7,6 +7,7 @@ const INITIAL_STATE = {
   loading: null,
   data: [],
   filters: [],
+  searchQuery: null,
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -24,6 +25,11 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         filters: removeFilterFromFiltersArray(action.payload, state.filters),
+      };
+    case "UPDATE_SEARCH_QUERY":
+      return {
+        ...state,
+        searchQuery: action.payload,
       };
     default:
       return state;

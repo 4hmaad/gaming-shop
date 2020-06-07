@@ -27,3 +27,8 @@ export const removeFilter = (category) => ({
   type: "REMOVE_FILTER",
   payload: category,
 });
+
+export const updateSearchQuery = (query) => ({
+  type: "UPDATE_SEARCH_QUERY",
+  payload: query,
+});
