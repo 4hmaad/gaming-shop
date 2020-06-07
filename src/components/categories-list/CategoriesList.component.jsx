@@ -1,25 +1,38 @@
 import React, { Fragment } from "react";
+import { connect } from "react-redux";
+
+import { addFilter, removeFilter } from "./../../redux/product/productActions";
 
 import CategoriesListContainer, {
   TitleContainer,
-  CategoriesItemContainer,
 } from "./CategoriesList.styles";
 
-const CategoriesList = () => {
+const CategoriesList = ({ addFilter, removeFilter }) => {
+  const handleClick = (e) => {
+    const category = e.target.innerText;
+
+    e.target.classList.toggle("activeFilter");
+
+    if (e.target.classList.contains("activeFilter")) {
+      addFilter(category);
+    } else {
+      removeFilter(category);
+    }
+  };
+
   return (
     <Fragment>
       <TitleContainer>Categories</TitleContainer>
 
       <CategoriesListContainer>
-        <CategoriesItemContainer>Action</CategoriesItemContainer>
-        <CategoriesItemContainer>Adventures</CategoriesItemContainer>
-        <CategoriesItemContainer>Racing</CategoriesItemContainer>
-        <CategoriesItemContainer>Puzzle</CategoriesItemContainer>
-        <CategoriesItemContainer>Shooter</CategoriesItemContainer>
-        <CategoriesItemContainer>Strategy</CategoriesItemContainer>
+        <li onClick={handleClick}>Action</li>
+        <li onClick={handleClick}>Adventures</li>
+        <li onClick={handleClick}>Racing</li>
+        <li onClick={handleClick}>Puzzle</li>
+        <li onClick={handleClick}>Shooting</li>
+        <li onClick={handleClick}>Strategy</li>
       </CategoriesListContainer>
     </Fragment>
   );
 };
-
-export default CategoriesList;
+export default connect(null, { addFilter, removeFilter })(CategoriesList);

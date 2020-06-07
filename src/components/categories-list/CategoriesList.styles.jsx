@@ -10,17 +10,17 @@ export const TitleContainer = styled.h1`
 export const CategoriesListContainer = styled.ul`
   list-style: none;
   margin-top: 1rem;
-`;
 
-export const CategoriesItemContainer = styled.li`
-  font-size: 1.4rem;
-  margin-bottom: 1rem;
-  padding: 2rem;
-  transition: all 0.2s;
-  cursor: pointer;
+  & > li {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    padding: 2rem;
+    transition: all 0.2s;
+    cursor: pointer;
 
-  &:hover {
-    background: var(--lightGrey-2);
+    &:hover {
+      background: var(--lightGrey-2);
+    }
   }
 `;
 
