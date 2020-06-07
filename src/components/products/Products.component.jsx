@@ -11,10 +11,18 @@ class Products extends Component {
     this.props.fetchProducts();
   }
 
-  renderProducts = (products) => {
-    if (products.loading === false) {
-      return products.data.map((product) => {
-        return <Product key={product.id} {...product} />;
+  renderProducts = () => {
+    const { data, filters, loading } = this.props.products;
+
+    const productsToDisplay = data.filter((product) => {
+      const productCategory = product.category.toLowerCase();
+
+      return filters.length ? filters.includes(productCategory) : product;
+    });
+
+    if (loading === false) {
+      return productsToDisplay.map((product) => {
+        return <Product key={product.id} product={product} />;
       });
     }
 
@@ -22,11 +30,7 @@ class Products extends Component {
   };
 
   render() {
-    return (
-      <ProductsContainer>
-        {this.renderProducts(this.props.products)}
-      </ProductsContainer>
-    );
+    return <ProductsContainer>{this.renderProducts()}</ProductsContainer>;
   }
 }
 

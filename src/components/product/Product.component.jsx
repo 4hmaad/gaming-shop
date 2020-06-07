@@ -25,7 +25,7 @@ const Product = ({ product, addItem }) => {
 
         <CategoryContainer>{developer}</CategoryContainer>
 
-        {discount != "0" ? (
+        {discount !== 0 ? (
           <DiscountContainer>-{discount}%</DiscountContainer>
         ) : (
           ""

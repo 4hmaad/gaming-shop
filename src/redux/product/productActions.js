@@ -17,3 +17,13 @@ export const fetchProducts = () => (dispatch) => {
     dispatch({ type: "FETCHED_PRODUCTS", payload: productsData });
   });
 };
+
+export const addFilter = (category) => ({
+  type: "ADD_FILTER",
+  payload: category,
+});
+
+export const removeFilter = (category) => ({
+  type: "REMOVE_FILTER",
+  payload: category,
+});
