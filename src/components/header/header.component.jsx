@@ -16,7 +16,7 @@ const Header = ({ signedUser }) => (
         <div onClick={() => auth.signOut()}>sign out</div>
       )}
 
-      <Link to="/cart">
+      <Link to="/checkout">
         <CartIcon style={{ width: "2.8rem", height: "2.8rem" }} />
       </Link>
     </MenuContainer>
