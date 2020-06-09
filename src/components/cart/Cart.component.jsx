@@ -1,28 +1,37 @@
 import React from "react";
+import { connect } from "react-redux";
+
 import CartContainer, {
   HeaderContainer,
-  ItemContainer,
   CartProductsContainer,
 } from "./Cart.styles";
 
 import CartProduct from "../../components/cart-product/CartProduct.component";
 
-const Cart = () => {
+const Cart = ({ cartItems }) => {
+  const renderCartProducts = () => {
+    return cartItems.map((cartItem) => {
+      return <CartProduct key={cartItem.id} {...cartItem} />;
+    });
+  };
+
   return (
     <CartContainer>
       <HeaderContainer>
-        <ItemContainer>Product</ItemContainer>
-        <ItemContainer>Title</ItemContainer>
-        <ItemContainer>Quantity</ItemContainer>
-        <ItemContainer>Price</ItemContainer>
-        <ItemContainer>Remove</ItemContainer>
+        <li>Product</li>
+        <li>Title</li>
+        <li>Quantity</li>
+        <li>Price</li>
+        <li>Remove</li>
       </HeaderContainer>
 
-      <CartProductsContainer>
-        <CartProduct />
-      </CartProductsContainer>
+      <CartProductsContainer>{renderCartProducts()}</CartProductsContainer>
     </CartContainer>
   );
 };
 
-export default Cart;
+const mapStateToProps = ({ cart }) => {
+  return cart;
+};
+
+export default connect(mapStateToProps)(Cart);

@@ -7,9 +7,9 @@ const flexCenterStyle = css`
 `;
 
 const CartProductContainer = styled.li`
-  padding: 2rem 0rem;
+  padding: 1rem 0rem;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(5, 1fr);
   border-bottom: 1px solid var(--lightGrey);
 
   & > * {
@@ -19,18 +19,18 @@ const CartProductContainer = styled.li`
 `;
 
 export const ImageContainer = styled.img`
-  height: 33rem;
+  height: 9rem;
+  width: 9rem;
   margin: 0 auto;
 `;
 
 export const TitleContainer = styled.h1`
   font-size: var(--text-0);
   font-weight: 300;
-  text-wrap: wrap;
+  text-align: center;
 `;
 
 export const TextContainer = styled.div`
-  ${flexCenterStyle}
   font-size: var(--text-1);
   font-weight: 300;
 `;
