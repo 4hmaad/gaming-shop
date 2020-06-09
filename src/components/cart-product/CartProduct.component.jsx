@@ -1,4 +1,7 @@
 import React from "react";
+import { connect } from "react-redux";
+
+import { addItem, removeItem } from "./../../redux/cart/cartActions";
 
 import CartProductContainer, {
   ImageContainer,
@@ -7,15 +10,20 @@ import CartProductContainer, {
   IconButton,
 } from "./CartProduct.styles";
 
-const CartProduct = ({ title, imageUrl, price, quantity }) => {
+const CartProduct = (props) => {
+  const { title, imageUrl, price, quantity } = props.product;
+  const { addItem, removeItem } = props;
+
   return (
     <CartProductContainer>
       <ImageContainer src={imageUrl} alt={title} />
       <TitleContainer>{title}</TitleContainer>
       <TextContainer>
-        <IconButton left>❮</IconButton>
+        <IconButton onClick={() => removeItem(props.product)} left>
+          ❮
+        </IconButton>
         {quantity}
-        <IconButton>❯</IconButton>
+        <IconButton onClick={() => addItem(props.product)}>❯</IconButton>
       </TextContainer>
       <TextContainer>{`$${price}`}</TextContainer>
       <TextContainer>
@@ -25,4 +33,9 @@ const CartProduct = ({ title, imageUrl, price, quantity }) => {
   );
 };
 
-export default CartProduct;
+const mapStateToProps = ({ cart }) => {
+  return {
+    cart,
+  };
+};
+export default connect(mapStateToProps, { addItem, removeItem })(CartProduct);

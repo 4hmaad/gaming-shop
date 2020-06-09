@@ -11,7 +11,7 @@ import CartProduct from "../../components/cart-product/CartProduct.component";
 const Cart = ({ cartItems }) => {
   const renderCartProducts = () => {
     return cartItems.map((cartItem) => {
-      return <CartProduct key={cartItem.id} {...cartItem} />;
+      return <CartProduct key={cartItem.id} product={cartItem} />;
     });
   };
 
