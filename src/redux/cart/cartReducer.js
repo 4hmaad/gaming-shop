@@ -8,33 +8,29 @@ import {
 
 const INITIAL_STATE = {
   cartItems: [],
-  totalPrice: null,
-  totalItems: null,
+  totalPrice: 0,
+  totalItems: 0,
 };
 
 export default (state = INITIAL_STATE, action) => {
+  const updatedState = (previousState, updatedCart) => ({
+    ...previousState,
+    cartItems: updatedCart,
+    totalPrice: calculateTotalPrice(updatedCart),
+    totalItems: calculateTotalItems(updatedCart),
+  });
+  let updatedCartItems;
+
   switch (action.type) {
     case "ADD_ITEM":
-      return {
-        ...state,
-        cartItems: addItemToCart(action.payload, state.cartItems),
-        totalPrice: calculateTotalPrice(state.cartItems),
-        totalItems: calculateTotalItems(state.cartItems),
-      };
+      updatedCartItems = addItemToCart(action.payload, state.cartItems);
+      return updatedState(state, updatedCartItems);
     case "REMOVE_ITEM":
-      return {
-        ...state,
-        cartItems: removeItemFromCart(action.payload, state.cartItems),
-        totalPrice: calculateTotalPrice(state.cartItems),
-        totalItems: calculateTotalItems(state.cartItems),
-      };
+      updatedCartItems = removeItemFromCart(action.payload, state.cartItems);
+      return updatedState(state, updatedCartItems);
     case "CLEAR_ITEM":
-      return {
-        ...state,
-        cartItems: clearItemFromCart(action.payload, state.cartItems),
-        totalPrice: calculateTotalPrice(state.cartItems),
-        totalItems: calculateTotalItems(state.cartItems),
-      };
+      updatedCartItems = clearItemFromCart(action.payload, state.cartItems);
+      return updatedState(state, updatedCartItems);
     default:
       return state;
   }
