@@ -3,8 +3,9 @@ import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
 import "./index.scss";
-import store from "./redux/store";
+import { store, persistor } from "./redux/store";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
@@ -23,9 +24,11 @@ const theme = {
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
-      <ThemeProvider theme={theme}>
-        <App />
-      </ThemeProvider>
+      <PersistGate persistor={persistor}>
+        <ThemeProvider theme={theme}>
+          <App />
+        </ThemeProvider>
+      </PersistGate>
     </BrowserRouter>
   </Provider>,
   document.getElementById("root")
