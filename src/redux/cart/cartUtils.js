@@ -32,7 +32,8 @@ export const clearItemFromCart = (itemToRemove, cartItems) => {
 
 export const calculateTotalPrice = (cartItems) => {
   return cartItems.reduce(
-    (totalPrice, currentItem) => totalPrice + currentItem.price,
+    (totalPrice, currentItem) =>
+      totalPrice + currentItem.price * currentItem.quantity,
     0
   );
 };

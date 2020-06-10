@@ -33,4 +33,17 @@ export const CartProductsContainer = styled.ul`
   width: 100%;
 `;
 
+export const CartBottomContainer = styled.div`
+  margin: 2rem 0rem;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 8rem;
+  font-size: var(--text-0);
+  font-weight: 400;
+
+  & > span {
+    padding: 0rem 1rem;
+  }
+`;
+
 export default CartContainer;

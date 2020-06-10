@@ -4,11 +4,12 @@ import { connect } from "react-redux";
 import CartContainer, {
   HeaderContainer,
   CartProductsContainer,
+  CartBottomContainer,
 } from "./Cart.styles";
 
 import CartProduct from "../../components/cart-product/CartProduct.component";
 
-const Cart = ({ cartItems }) => {
+const Cart = ({ cartItems, totalPrice }) => {
   const renderCartProducts = () => {
     return cartItems.map((cartItem) => {
       return <CartProduct key={cartItem.id} product={cartItem} />;
@@ -26,6 +27,12 @@ const Cart = ({ cartItems }) => {
       </HeaderContainer>
 
       <CartProductsContainer>{renderCartProducts()}</CartProductsContainer>
+
+      <CartBottomContainer>
+        <span> Total: </span>
+
+        <span> {`$${Math.round(totalPrice)}`} </span>
+      </CartBottomContainer>
     </CartContainer>
   );
 };
