@@ -80,5 +80,10 @@ const CustomButtonContainer = styled.button`
 
   ${getButtonStyles}
   ${getButtonWidth}
+
+
+  &:active {
+    transform: scale(0.95);
+  }
 `;
 export default CustomButtonContainer;
