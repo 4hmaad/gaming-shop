@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const SignInContainer = styled.form`
+const SignInFormContainer = styled.form`
   display: flex;
   flex-direction: column;
 
@@ -18,4 +18,4 @@ export const TitleContainer = styled.h1`
       : "font-weight: 400; font-size: var(--text-1)"}
 `;
 
-export default SignInContainer;
+export default SignInFormContainer;
