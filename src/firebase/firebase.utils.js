@@ -21,21 +21,22 @@ export const auth = firebase.auth();
 const googleProvider = new firebase.auth.GoogleAuthProvider();
 export const signInWithGoogle = () => auth.signInWithPopup(googleProvider);
 
-export const createUserDocument = async ({
-  uid,
-  displayName,
-  email,
-  photoURL,
-}) => {
-  const userRef = firestore.doc(`users/${uid}`);
+export const createUserDocument = async (userAuth, additionalData) => {
+  const userRef = firestore.doc(`users/${userAuth.uid}`);
   const snapShot = await userRef.get();
 
-  if (!snapShot.exists) {
-    userRef.set({
-      displayName,
-      email,
-      photoURL,
-    });
+  if (!snapShot.exists || additionalData) {
+    const { displayName, email } = userAuth;
+
+    try {
+      await userRef.set({
+        displayName,
+        email,
+        ...additionalData,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
   }
 
   return userRef;

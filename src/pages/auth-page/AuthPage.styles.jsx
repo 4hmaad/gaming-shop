@@ -10,7 +10,7 @@ export const TitleContainer = styled.h1`
 
 export const FormsContainer = styled.div`
   display: grid;
-  grid-template-columns: 2fr 2fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(21rem, 1fr));
   grid-gap: 5rem;
   margin: 8rem auto;
   max-width: 100rem;
