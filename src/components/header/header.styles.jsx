@@ -68,4 +68,19 @@ export const MenuContainer = styled.div`
     cursor: pointer;
   }
 `;
+
+export const CartSpanContainer = styled.span`
+  position: absolute;
+  top: -1.6rem;
+  right: -1.8rem;
+  background-color: var(--yellow);
+  height: 2.6rem;
+  width: 2.6rem;
+  border-radius: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: var(--text-4);
+`;
+
 export default HeaderContainer;
