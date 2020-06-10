@@ -40,4 +40,12 @@ export const SpinnerContainer = styled.div`
   }
 `;
 
+export const ErrorMessage = styled.h1`
+  font-size: var(--text-2);
+  font-weight: 300;
+  position: absolute;
+  top: 14rem;
+  right: 50%;
+`;
+
 export default ProductsContainer;

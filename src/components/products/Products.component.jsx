@@ -3,7 +3,10 @@ import { connect } from "react-redux";
 
 import { fetchProducts } from "../../redux/product/productActions";
 
-import ProductsContainer, { SpinnerContainer } from "./Products.styles";
+import ProductsContainer, {
+  SpinnerContainer,
+  ErrorMessage,
+} from "./Products.styles";
 import Product from "../product/Product.component";
 
 class Products extends Component {
@@ -42,7 +45,7 @@ class Products extends Component {
         return <Product key={product.id} product={product} />;
       });
     } else if (loading === false && !productsToDisplay.length) {
-      return <h2> No Games Found </h2>;
+      return <ErrorMessage> No Games Found </ErrorMessage>;
     }
 
     return <SpinnerContainer />;
