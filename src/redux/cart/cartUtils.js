@@ -26,6 +26,10 @@ export const removeItemFromCart = (itemToRemove, cartItems) => {
   );
 };
 
+export const clearItemFromCart = (itemToRemove, cartItems) => {
+  return cartItems.filter((item) => item.id !== itemToRemove.id);
+};
+
 export const calculateTotalPrice = (cartItems) => {
   return cartItems.reduce(
     (totalPrice, currentItem) => totalPrice + currentItem.price,

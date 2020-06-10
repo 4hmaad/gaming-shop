@@ -10,3 +10,9 @@ export const removeItem = (cartItem) => {
     payload: cartItem,
   };
 };
+export const clearItem = (cartItem) => {
+  return {
+    type: "CLEAR_ITEM",
+    payload: cartItem,
+  };
+};

@@ -2,6 +2,7 @@ import {
   addItemToCart,
   removeItemFromCart,
   calculateTotalPrice,
+  clearItemFromCart,
   calculateTotalItems,
 } from "./cartUtils";
 
@@ -24,6 +25,13 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         cartItems: removeItemFromCart(action.payload, state.cartItems),
+        totalPrice: calculateTotalPrice(state.cartItems),
+        totalItems: calculateTotalItems(state.cartItems),
+      };
+    case "CLEAR_ITEM":
+      return {
+        ...state,
+        cartItems: clearItemFromCart(action.payload, state.cartItems),
         totalPrice: calculateTotalPrice(state.cartItems),
         totalItems: calculateTotalItems(state.cartItems),
       };

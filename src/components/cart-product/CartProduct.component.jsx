@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { addItem, removeItem } from "./../../redux/cart/cartActions";
+import { addItem, removeItem, clearItem } from "./../../redux/cart/cartActions";
 
 import CartProductContainer, {
   ImageContainer,
@@ -12,7 +12,7 @@ import CartProductContainer, {
 
 const CartProduct = (props) => {
   const { title, imageUrl, price, quantity } = props.product;
-  const { addItem, removeItem } = props;
+  const { addItem, removeItem, clearItem } = props;
 
   return (
     <CartProductContainer>
@@ -27,7 +27,7 @@ const CartProduct = (props) => {
       </TextContainer>
       <TextContainer>{`$${price}`}</TextContainer>
       <TextContainer>
-        <IconButton>✕</IconButton>
+        <IconButton onClick={() => clearItem(props.product)}>✕</IconButton>
       </TextContainer>
     </CartProductContainer>
   );
@@ -38,4 +38,6 @@ const mapStateToProps = ({ cart }) => {
     cart,
   };
 };
-export default connect(mapStateToProps, { addItem, removeItem })(CartProduct);
+export default connect(mapStateToProps, { addItem, removeItem, clearItem })(
+  CartProduct
+);
