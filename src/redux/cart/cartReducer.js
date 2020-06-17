@@ -31,6 +31,8 @@ export default (state = INITIAL_STATE, action) => {
     case "CLEAR_ITEM":
       updatedCartItems = clearItemFromCart(action.payload, state.cartItems);
       return updatedState(state, updatedCartItems);
+    case "RESET_CART":
+      return updatedState(state, []);
     default:
       return state;
   }

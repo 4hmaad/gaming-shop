@@ -16,3 +16,9 @@ export const clearItem = (cartItem) => {
     payload: cartItem,
   };
 };
+
+export const resetCart = (cartItem) => {
+  return {
+    type: "RESET_CART",
+  };
+};
