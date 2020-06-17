@@ -1,8 +1,6 @@
 export const addFilterToFiltersArray = (filterToAdd, filtersArray) => {
   filterToAdd = filterToAdd.toLowerCase();
-
-  filtersArray.push(filterToAdd);
-  return filtersArray;
+  return [...filtersArray, filterToAdd];
 };
 
 export const removeFilterFromFiltersArray = (filterToRemove, filtersArray) => {
