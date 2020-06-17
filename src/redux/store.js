@@ -6,7 +6,9 @@ import logger from "redux-logger";
 
 import reducers from "./rootReducer";
 
-const middlewareArray = [logger, thunk];
+const middlewareArray = process.env.REACT_APP_PRODUCTION
+  ? [thunk]
+  : [logger, thunk];
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
