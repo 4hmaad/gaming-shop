@@ -33,7 +33,9 @@ const Cart = ({ cartItems, totalPrice }) => {
         <span> Total: </span>
 
         <span> {`$${Math.round(totalPrice)}`} </span>
-        <StripeCheckoutButton price={Math.round(totalPrice)} />
+        {cartItems.length ? (
+          <StripeCheckoutButton price={Math.round(totalPrice)} />
+        ) : null}
       </CartBottomContainer>
     </CartContainer>
   );

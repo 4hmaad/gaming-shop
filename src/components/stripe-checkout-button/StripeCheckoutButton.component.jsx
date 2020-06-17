@@ -11,11 +11,11 @@ const StripeCheckoutButton = ({ price, cart, resetCart, history }) => {
     "pk_test_51GsNRsC8KqWYzqmMRBnkvQndy4pspHb0fQhisovpR9sRg3EHPjIddk4ivO1BT6auWrTD8ONyfEpyZZpIKwjakISy00xG47EOe3";
 
   const onToken = (token) => {
-    console.log({ token, cart });
+    console.info({ token, cart });
+    resetCart();
     alert(
       "payment successful, redirecting you to the recipe page. #will never happen"
     );
-    resetCart();
     history.push("/");
   };
 
