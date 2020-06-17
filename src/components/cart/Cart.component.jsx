@@ -7,6 +7,7 @@ import CartContainer, {
   CartBottomContainer,
 } from "./Cart.styles";
 
+import StripeCheckoutButton from "../../components/stripe-checkout-button/StripeCheckoutButton.component";
 import CartProduct from "../../components/cart-product/CartProduct.component";
 
 const Cart = ({ cartItems, totalPrice }) => {
@@ -32,6 +33,7 @@ const Cart = ({ cartItems, totalPrice }) => {
         <span> Total: </span>
 
         <span> {`$${Math.round(totalPrice)}`} </span>
+        <StripeCheckoutButton price={Math.round(totalPrice)} />
       </CartBottomContainer>
     </CartContainer>
   );
