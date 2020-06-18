@@ -15,6 +15,9 @@ const CheckoutPage = lazy(() =>
   import("./pages/checkout-page/CheckoutPage.component")
 );
 const AuthPage = lazy(() => import("./pages/auth-page/AuthPage.component"));
+const ReceiptPage = lazy(() =>
+  import("./pages/receipt-page/ReceiptPage.component")
+);
 
 const App = ({ setSignedUser, user: { signedUser } }) => {
   useEffect(() => {
@@ -45,6 +48,7 @@ const App = ({ setSignedUser, user: { signedUser } }) => {
         <Suspense fallback={<Spinner />}>
           <Route exact path="/" component={HomePage} />
           <Route exact path="/checkout" component={CheckoutPage} />
+          <Route exact path="/order/receipt/:id" component={ReceiptPage} />
           <Route
             exact
             path="/auth"
