@@ -9,7 +9,9 @@ import Spinner from "../spinner/Spinner.component";
 
 const Products = ({ fetchProducts, products }) => {
   useEffect(() => {
-    fetchProducts();
+    if (!products.data.length) {
+      fetchProducts();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
