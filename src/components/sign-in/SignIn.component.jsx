@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 
 import { auth } from "../../firebase/firebase.utils";
 
@@ -7,19 +7,18 @@ import CustomButton from "../custom-button/CustomButton.component";
 
 import SignInFormContainer, { TitleContainer } from "./SignIn.styles";
 
-class SignIn extends Component {
-  constructor(props) {
-    super(props);
+const SignIn = () => {
+  const [formValues, setFormValues] = useState({ email: "", password: "" });
 
-    this.state = {
-      email: "",
-      password: "",
-    };
-  }
+  const handleChange = (e) => {
+    const { name, value } = e.target;
 
-  onSubmitForm = async (e) => {
+    setFormValues({ [name]: value });
+  };
+
+  const onSubmitForm = async (e) => {
     e.preventDefault();
-    const { email, password } = this.state;
+    const { email, password } = formValues;
 
     try {
       await auth.signInWithEmailAndPassword(email, password);
@@ -28,35 +27,27 @@ class SignIn extends Component {
     }
   };
 
-  handleChange = (e) => {
-    const { name, value } = e.target;
-
-    this.setState({ [name]: value });
-  };
-
-  render() {
-    return (
-      <SignInFormContainer onSubmit={this.onSubmitForm}>
-        <TitleContainer>Have Signed Up Already?</TitleContainer>
-        <TitleContainer small>Sign In with Email or Google</TitleContainer>
-        <FormInput
-          name="email"
-          type="email"
-          value={this.state.email}
-          onChange={this.handleChange}
-          placeholder="Email"
-        />
-        <FormInput
-          name="password"
-          type="password"
-          value={this.state.password}
-          onChange={this.handleChange}
-          placeholder="Password"
-        />
-        <CustomButton primary>Sign In</CustomButton>
-      </SignInFormContainer>
-    );
-  }
-}
+  return (
+    <SignInFormContainer onSubmit={onSubmitForm}>
+      <TitleContainer>Have Signed Up Already?</TitleContainer>
+      <TitleContainer small>Sign In with Email or Google</TitleContainer>
+      <FormInput
+        name="email"
+        type="email"
+        value={formValues.email}
+        onChange={handleChange}
+        placeholder="Email"
+      />
+      <FormInput
+        name="password"
+        type="password"
+        value={formValues.password}
+        onChange={handleChange}
+        placeholder="Password"
+      />
+      <CustomButton primary>Sign In</CustomButton>
+    </SignInFormContainer>
+  );
+};
 
 export default SignIn;

@@ -1,14 +1,11 @@
 import React from "react";
-import { connect } from "react-redux";
 
 import CustomButton from "../custom-button/CustomButton.component";
-
-import { setSignedUser } from "./../../redux/user/userActions";
 
 import GoogleSignInContainer, { TitleContainer } from "./GoogleSignIn.styles";
 import { signInWithGoogle } from "./../../firebase/firebase.utils";
 
-const GoogleSignIn = (props) => {
+const GoogleSignIn = () => {
   return (
     <GoogleSignInContainer>
       <TitleContainer>Can't Do Any of Them?</TitleContainer>
@@ -21,6 +18,4 @@ const GoogleSignIn = (props) => {
   );
 };
 
-export default connect(null, {
-  setSignedUser,
-})(GoogleSignIn);
+export default GoogleSignIn;

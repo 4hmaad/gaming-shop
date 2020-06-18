@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
 import { fetchProducts } from "../../redux/product/productActions";
@@ -7,13 +7,14 @@ import ProductsContainer, { ErrorMessage } from "./Products.styles";
 import Product from "../product/Product.component";
 import Spinner from "../spinner/Spinner.component";
 
-class Products extends Component {
-  componentDidMount() {
-    this.props.fetchProducts();
-  }
+const Products = ({ fetchProducts, products }) => {
+  useEffect(() => {
+    fetchProducts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  renderProducts = () => {
-    const { data, filters, loading, searchQuery } = this.props.products;
+  const renderProducts = () => {
+    const { data, filters, loading, searchQuery } = products;
     var productsToDisplay;
 
     if (searchQuery) {
@@ -49,10 +50,8 @@ class Products extends Component {
     return <Spinner />;
   };
 
-  render() {
-    return <ProductsContainer>{this.renderProducts()}</ProductsContainer>;
-  }
-}
+  return <ProductsContainer>{renderProducts()}</ProductsContainer>;
+};
 
 const mapStateToProps = ({ products }) => {
   return {

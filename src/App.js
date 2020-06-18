@@ -1,4 +1,4 @@
-import React, { Fragment, Component, lazy, Suspense } from "react";
+import React, { Fragment, useEffect, lazy, Suspense } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
@@ -16,47 +16,48 @@ const CheckoutPage = lazy(() =>
 );
 const AuthPage = lazy(() => import("./pages/auth-page/AuthPage.component"));
 
-class App extends Component {
-  componentDidMount() {
-    auth.onAuthStateChanged(async (userAuth) => {
-      this.props.setSignedUser(userAuth);
+const App = ({ setSignedUser, user: { signedUser } }) => {
+  useEffect(() => {
+    const unsubscribeAuth = auth.onAuthStateChanged(async (userAuth) => {
+      setSignedUser(userAuth);
 
       if (userAuth) {
         const userRef = await createUserDocument(userAuth);
         userRef.onSnapshot((snapShot) => {
-          this.props.setSignedUser({
+          setSignedUser({
             id: snapShot.id,
             ...snapShot.data(),
           });
         });
       }
     });
-  }
 
-  render() {
-    return (
-      <Fragment>
-        <Header />
-        <Switch>
-          <Suspense fallback={<Spinner />}>
-            <Route exact path="/" component={HomePage} />
-            <Route exact path="/checkout" component={CheckoutPage} />
-            <Route
-              exact
-              path="/auth"
-              render={() =>
-                this.props.signedUser ? <Redirect to="/" /> : <AuthPage />
-              }
-            />
-          </Suspense>
-        </Switch>
-      </Fragment>
-    );
-  }
-}
+    return () => {
+      unsubscribeAuth();
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  return (
+    <Fragment>
+      <Header />
+      <Switch>
+        <Suspense fallback={<Spinner />}>
+          <Route exact path="/" component={HomePage} />
+          <Route exact path="/checkout" component={CheckoutPage} />
+          <Route
+            exact
+            path="/auth"
+            render={() => (signedUser ? <Redirect to="/" /> : <AuthPage />)}
+          />
+        </Suspense>
+      </Switch>
+    </Fragment>
+  );
+};
 
 const mapStateToProps = ({ user }) => {
-  return user;
+  return { user };
 };
 
 export default connect(mapStateToProps, { setSignedUser })(App);
