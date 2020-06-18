@@ -7,7 +7,7 @@ import HomePageContainer, {
   TopBarContainer,
   TitleContainer,
   ContentContainer,
-} from "./Homepage.styles";
+} from "./HomePage.styles";
 
 import FormInput from "../../components/form-input/FormInput.component";
 import Sidebar from "../../components/sidebar/Sidebar.component";
