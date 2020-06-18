@@ -1,18 +1,20 @@
-import React, { Fragment, Component } from "react";
+import React, { Fragment, Component, lazy, Suspense } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { auth, createUserDocument } from "./firebase/firebase.utils";
 
-/** Pages */
-import HomePage from "./pages/home-page/HomePage.component";
-import CheckoutPage from "./pages/checkout-page/CheckoutPage.component";
-import AuthPage from "./pages/auth-page/AuthPage.component";
-
 /** Components */
 import Header from "./components/header/Header.component";
-
+import Spinner from "./components/spinner/Spinner.component";
+/** Actions */
 import { setSignedUser } from "./redux/user/userActions";
+/** Pages */
+const HomePage = lazy(() => import("./pages/home-page/HomePage.component"));
+const CheckoutPage = lazy(() =>
+  import("./pages/checkout-page/CheckoutPage.component")
+);
+const AuthPage = lazy(() => import("./pages/auth-page/AuthPage.component"));
 
 class App extends Component {
   componentDidMount() {
@@ -35,17 +37,18 @@ class App extends Component {
     return (
       <Fragment>
         <Header />
-
         <Switch>
-          <Route exact path="/" component={HomePage} />
-          <Route exact path="/checkout" component={CheckoutPage} />
-          <Route
-            exact
-            path="/auth"
-            render={() =>
-              this.props.signedUser ? <Redirect to="/" /> : <AuthPage />
-            }
-          />
+          <Suspense fallback={<Spinner />}>
+            <Route exact path="/" component={HomePage} />
+            <Route exact path="/checkout" component={CheckoutPage} />
+            <Route
+              exact
+              path="/auth"
+              render={() =>
+                this.props.signedUser ? <Redirect to="/" /> : <AuthPage />
+              }
+            />
+          </Suspense>
         </Switch>
       </Fragment>
     );

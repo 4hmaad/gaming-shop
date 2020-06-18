@@ -3,11 +3,9 @@ import { connect } from "react-redux";
 
 import { fetchProducts } from "../../redux/product/productActions";
 
-import ProductsContainer, {
-  SpinnerContainer,
-  ErrorMessage,
-} from "./Products.styles";
+import ProductsContainer, { ErrorMessage } from "./Products.styles";
 import Product from "../product/Product.component";
+import Spinner from "../spinner/Spinner.component";
 
 class Products extends Component {
   componentDidMount() {
@@ -48,7 +46,7 @@ class Products extends Component {
       return <ErrorMessage> No Games Found </ErrorMessage>;
     }
 
-    return <SpinnerContainer />;
+    return <Spinner />;
   };
 
   render() {
