@@ -10,7 +10,7 @@ import CheckoutPage from "./pages/checkout-page/CheckoutPage.component";
 import AuthPage from "./pages/auth-page/AuthPage.component";
 
 /** Components */
-import Header from "./components/header/Header.component.jsx";
+import Header from "./components/header/Header.component";
 
 import { setSignedUser } from "./redux/user/userActions";
 
