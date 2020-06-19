@@ -10,7 +10,7 @@ import HeaderContainer, {
 } from "./Header.styles";
 import { ReactComponent as CartIcon } from "../../assets/cart.svg";
 
-const Header = ({ user: { signedUser }, cart: { totalItems } }) => (
+const Header = ({ user: { signedUser }, cart: { cartItems } }) => (
   <HeaderContainer>
     <LogoContainer to="/">Gamify</LogoContainer>
     <MenuContainer>
@@ -22,7 +22,7 @@ const Header = ({ user: { signedUser }, cart: { totalItems } }) => (
 
       <Link to="/checkout" style={{ position: "relative" }}>
         <CartIcon style={{ width: "2.8rem", height: "2.8rem" }} />
-        <CartSpanContainer>{totalItems}</CartSpanContainer>
+        <CartSpanContainer>{cartItems.length}</CartSpanContainer>
       </Link>
     </MenuContainer>
   </HeaderContainer>

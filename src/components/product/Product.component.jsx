@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { addItem } from "./../../redux/cart/cartActions";
+import { addItem, clearItem } from "./../../redux/cart/cartActions";
 
 import ProductContainer, {
   ImageContainer,
@@ -16,7 +16,7 @@ import CustomButton from "../custom-button/CustomButton.component";
 
 const Product = (props) => {
   /** Actions */
-  const { addItem } = props;
+  const { addItem, clearItem } = props;
   /** Current Product */
   const { product } = props;
   /** Cart State */
@@ -48,7 +48,7 @@ const Product = (props) => {
       </DetailsContainer>
 
       {isAddedToCart ? (
-        <CustomButton primary disabled>
+        <CustomButton primary onClick={() => clearItem(product)}>
           Added
         </CustomButton>
       ) : (
@@ -65,4 +65,4 @@ const mapStateToProps = ({ cart }) => {
     cart,
   };
 };
-export default connect(mapStateToProps, { addItem })(Product);
+export default connect(mapStateToProps, { addItem, clearItem })(Product);
