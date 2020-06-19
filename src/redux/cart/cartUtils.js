@@ -2,6 +2,8 @@ export const addItemToCart = (itemToAdd, cartItems) => {
   const itemAlreadyExists = cartItems.find((item) => item.id === itemToAdd.id);
 
   if (itemAlreadyExists) {
+    if (itemToAdd.price === 0) return cartItems;
+
     return cartItems.map((item) =>
       item.id === itemToAdd.id ? { ...item, quantity: item.quantity + 1 } : item
     );
