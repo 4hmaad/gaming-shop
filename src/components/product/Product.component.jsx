@@ -14,8 +14,20 @@ import ProductContainer, {
 
 import CustomButton from "../custom-button/CustomButton.component";
 
-const Product = ({ product, addItem }) => {
+const Product = (props) => {
+  /** Actions */
+  const { addItem } = props;
+  /** Current Product */
+  const { product } = props;
+  /** Cart State */
+  const {
+    cart: { cartItems },
+  } = props;
+
   const { title, imageUrl, price, discount, developer } = product;
+
+  /** checks if a product is added to cart */
+  const isAddedToCart = cartItems.find(({ id }) => id === product.id);
 
   return (
     <ProductContainer>
@@ -34,10 +46,23 @@ const Product = ({ product, addItem }) => {
           {parseFloat(price) > 0 ? `$${price}` : "FREE"}
         </PriceContainer>
       </DetailsContainer>
-      <CustomButton primary inverted onClick={() => addItem(product)}>
-        Add to Cart
-      </CustomButton>
+
+      {isAddedToCart ? (
+        <CustomButton primary disabled>
+          Added
+        </CustomButton>
+      ) : (
+        <CustomButton primary inverted onClick={() => addItem(product)}>
+          Add to Cart
+        </CustomButton>
+      )}
     </ProductContainer>
   );
 };
-export default connect(null, { addItem })(Product);
+
+const mapStateToProps = ({ cart }) => {
+  return {
+    cart,
+  };
+};
+export default connect(mapStateToProps, { addItem })(Product);

@@ -7,7 +7,12 @@ import ProductsContainer, { ErrorMessage } from "./Products.styles";
 import Product from "../product/Product.component";
 import Spinner from "../spinner/Spinner.component";
 
-const Products = ({ fetchProducts, products }) => {
+const Products = (props) => {
+  /** Actions */
+  const { fetchProducts } = props;
+  /** Products' State */
+  const { products } = props;
+
   useEffect(() => {
     if (!products.data.length) {
       fetchProducts();
@@ -55,9 +60,10 @@ const Products = ({ fetchProducts, products }) => {
   return <ProductsContainer>{renderProducts()}</ProductsContainer>;
 };
 
-const mapStateToProps = ({ products }) => {
+const mapStateToProps = ({ products, cart }) => {
   return {
     products,
+    cart,
   };
 };
 
