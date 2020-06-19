@@ -31,11 +31,13 @@ export const clearItemFromCart = (itemToRemove, cartItems) => {
 };
 
 export const calculateTotalPrice = (cartItems) => {
-  return cartItems.reduce(
-    (totalPrice, currentItem) =>
-      totalPrice + currentItem.price * currentItem.quantity,
-    0
-  );
+  return cartItems.reduce((totalPrice, currentItem) => {
+    const price = +(
+      totalPrice +
+      currentItem.price * currentItem.quantity
+    ).toFixed(2);
+    return price;
+  }, 0);
 };
 
 export const calculateTotalItems = (cartItems) => {
