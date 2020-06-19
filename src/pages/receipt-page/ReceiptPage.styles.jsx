@@ -44,12 +44,15 @@ export const ReceiptContainer = styled.div`
 export const GamesContainer = styled.ul`
   margin-top: 1.5rem;
 
-  & > div {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+  & > * {
     font-weight: 300;
     font-size: var(--text-3);
     padding: 0.5rem 1.5rem;
+  }
+
+  & > div {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
   }
 
   & > div:first-child {
@@ -58,6 +61,15 @@ export const GamesContainer = styled.ul`
     font-size: var(--text-3);
     margin-bottom: 1rem;
   }
+`;
+
+export const GamesHeaderContainer = styled.ul`
+  list-style-type: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: var(--black);
+  color: var(--white);
+  margin-bottom: 1rem;
 `;
 
 export default ReceiptPageContainer;

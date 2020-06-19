@@ -1,41 +1,53 @@
 import { firestore } from "./../../firebase/firebase.utils";
 
-export const fetchOrder = (id) => async (dispatch) => {
-  dispatch({ type: "FETCHING_ORDER" });
+const loadingOrder = () => ({
+  type: "LOADING_ORDER",
+});
 
-  try {
-    const orderRef = firestore.collection("orders").doc(id);
-    const snapShot = await orderRef.get();
-    if (snapShot.exists) {
-      const data = snapShot.data();
-      dispatch({ type: "FETCHED_ORDER", payload: data });
-    } else {
-      throw new Error(`Couldn't find order with the id ${id}`);
-    }
-  } catch (e) {
-    console.error(e.message);
-    dispatch({ type: "ORDER_ERROR", payload: e.message });
-  }
+const errorOrder = (err) => ({
+  type: "ERROR_ORDER",
+  payload: err.message,
+});
+
+export const fetchOrder = (id) => async (dispatch) => {
+  const fetchOrderAction = (data) => ({
+    type: "FETCH_ORDER",
+    payload: data,
+  });
+
+  dispatch(loadingOrder());
+
+  const orderRef = firestore.collection("orders").doc(id);
+  orderRef
+    .get()
+    .then((snapShot) => {
+      if (snapShot.exists) {
+        const data = snapShot.data();
+        dispatch(fetchOrderAction(data));
+      } else throw new Error(`Couldn't find order with the id ${id}`);
+    })
+    .catch((err) => {
+      console.error(err.message);
+      dispatch(errorOrder(err.message));
+    });
 };
 
 export const saveOrder = (order) => async (dispatch) => {
-  dispatch({ type: "SAVING_ORDER" });
+  const saveOrderAction = (order) => ({
+    type: "SAVE_ORDER",
+    payload: order,
+  });
 
-  try {
-    const abc = await firestore
-      .collection("orders")
-      .doc(order.token.id)
-      .set({
-        ...order,
-      });
-
-    console.log(abc);
-  } catch (e) {
-    console.error(e.message);
-    dispatch({ type: "ORDER_ERROR", payload: e.message });
-    return false;
-  }
-
-  dispatch({ type: "SAVED_ORDER", payload: order });
-  return true;
+  return firestore
+    .collection("orders")
+    .doc(order.token.id)
+    .set({
+      ...order,
+    })
+    .then(() => {
+      dispatch(saveOrderAction(order));
+    })
+    .catch((err) => {
+      dispatch(errorOrder(err));
+    });
 };

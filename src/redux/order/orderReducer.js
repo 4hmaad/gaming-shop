@@ -1,39 +1,47 @@
+/**
+ * The initial state of the loaded order.
+ * @property String details -  The details of the fetched order.
+ * @property Boolean isLoading - it's true when there something is loading related to the order's state.
+ * @property Boolean hasError - true when order's state has error otherwise false.
+ * @property String error - The error message, is null when there is no error.
+ */
+
 const INITIAL_STATE = {
   details: null,
-  loading: null,
+  isLoading: false,
+  hasError: false,
   error: null,
 };
 
-export default (state = INITIAL_STATE, action) => {
-  switch (action.type) {
-    case "FETCHED_ORDER":
+export default (state = INITIAL_STATE, { type, payload }) => {
+  switch (type) {
+    case "FETCH_ORDER":
+      return {
+        details: payload,
+        isLoading: false,
+        hasError: false,
+        error: null,
+      };
+    case "SAVE_ORDER":
       return {
         ...state,
-        details: action.payload,
-        loading: false,
+        details: payload,
+        isLoading: false,
+        hasError: false,
+        error: null,
       };
-    case "FETCHING_ORDER":
+    case "LOADING_ORDER":
       return {
         ...state,
-        loading: true,
+        isLoading: true,
       };
-    case "SAVED_ORDER":
+    case "ERROR_ORDER":
       return {
         ...state,
-        details: action.payload,
-        loading: false,
+        hasError: true,
+        error: payload,
+        isLoading: false,
       };
-    case "SAVING_ORDER":
-      return {
-        ...state,
-        loading: true,
-      };
-    case "ORDER_ERROR":
-      return {
-        ...state,
-        error: action.payload,
-      };
-
     default:
       return state;
   }

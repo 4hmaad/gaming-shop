@@ -10,43 +10,60 @@ import ReceiptPageContainer, {
   TitleContainer,
   ReceiptContainer,
   GamesContainer,
+  GamesHeaderContainer,
 } from "./ReceiptPage.styles";
 
-const ReceiptPage = ({ fetchOrder, match, order }) => {
-  useEffect(() => {
-    const orderTokenId = order.details ? order.details.token.id : null;
-    if (orderTokenId !== match.params.id && !order.loading)
-      fetchOrder(match.params.id);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [order.loading]);
+const ReceiptPage = (props) => {
+  /** Actions */
+  const { fetchOrder } = props;
+  /** Router */
+  const { match } = props;
+  /** Order State */
+  const { order } = props;
 
-  console.log(order);
+  useEffect(() => {
+    const currentLoadedOrderId = order.details ? order.details.token.id : null;
+    if (currentLoadedOrderId !== match.params.id) fetchOrder(match.params.id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const renderCartItems = () => {
-    if (order.loading === false) {
-      return order.details.cart.cartItems.map((cartItem) => (
-        <div>
-          <span>{cartItem.title}</span>
-          <span>
-            {`${randomNumber(2)}BF1-`}
-            {`F${randomNumber(5)}1B`}F-
-            {`${randomNumber(6)}-`}
-            {`F${randomNumber(3)}1B`}-{`${randomNumber(9)}BXZ`}
-          </span>
-        </div>
-      ));
-    }
-  };
+    if (!order.isLoading && order.details) {
+      const {
+        details: { cart },
+      } = order;
 
-  const randomNumber = (limit) => {
-    return Math.floor(Math.random() * limit);
+      // eslint-disable-next-line array-callback-return
+      return cart.cartItems.map((cartItem, idx) => {
+        const { quantity, title, id } = cartItem;
+        const rN = (limit) => {
+          return Math.floor(Math.random() * limit);
+        };
+        const items = [];
+
+        for (let i = 1; i <= quantity; i++) {
+          items.push(
+            <div key={id + i}>
+              <span>{title}</span>
+              <span>
+                {`${rN(9)}ZX${rN(9)}`}-{`${rN(9)}${rN(9)}F${rN(9)}`}-
+                {`${rN(9)}X${rN(9)}${rN(9)}`}-{`${rN(9)}${rN(999)}${rN(9)}`}-
+                {`${rN(555)}F${rN(9)}`}
+              </span>
+            </div>
+          );
+        }
+
+        return <>{items}</>;
+      });
+    }
   };
 
   return (
     <ReceiptPageContainer>
       <TitleContainer> Order Receipt </TitleContainer>
 
-      {order.loading === false ? (
+      {!order.isLoading && order.details ? (
         <ReceiptContainer>
           <ul>
             <li>
@@ -64,10 +81,10 @@ const ReceiptPage = ({ fetchOrder, match, order }) => {
           </ul>
           <h1>Games</h1>
           <GamesContainer>
-            <div>
+            <GamesHeaderContainer>
               <span>Name</span>
               <span>Key</span>
-            </div>
+            </GamesHeaderContainer>
             {renderCartItems()}
           </GamesContainer>
         </ReceiptContainer>
