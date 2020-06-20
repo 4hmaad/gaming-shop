@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 
 import SidebarContainer, { TitleContainer } from "./Sidebar.styles";
 
-import CategoriesList from "./../categories-list/CategoriesList.component";
+import CategoriesList from "./../CategoriesList/CategoriesList.component";
 
 const Sidebar = ({ filters }) => {
   return (

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
-import FormInput from "../form-input/FormInput.component";
-import CustomButton from "../custom-button/CustomButton.component";
+import FormInput from "../FormInput/FormInput.component";
+import CustomButton from "../CustomButton/CustomButton.component";
 
 import SignUpFormContainer, { TitleContainer } from "./SignUp.styles";
 

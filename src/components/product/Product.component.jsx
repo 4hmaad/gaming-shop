@@ -14,7 +14,7 @@ import ProductContainer, {
   PriceContainer,
 } from "./Product.styles";
 
-import CustomButton from "../custom-button/CustomButton.component";
+import CustomButton from "../CustomButton/CustomButton.component";
 
 const Product = (props) => {
   /** Actions */

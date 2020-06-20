@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 
 import { fetchOrder } from "../../redux/order/orderActions";
 
-import Spinner from "./../../components/spinner/Spinner.component";
+import Spinner from "../../components/Spinner/Spinner.component";
 
 import ReceiptPageContainer, {
   TitleContainer,

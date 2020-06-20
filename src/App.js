@@ -7,18 +7,18 @@ import { connect } from "react-redux";
 import { auth, createUserDocument } from "./firebase/firebase.utils";
 
 /** Components */
-import Header from "./components/header/Header.component";
-import Spinner from "./components/spinner/Spinner.component";
+import Header from "./components/Header/Header.component";
+import Spinner from "./components/Spinner/Spinner.component";
 /** Actions */
 import { setSignedUser } from "./redux/user/userActions";
 /** Pages */
-const HomePage = lazy(() => import("./pages/home-page/HomePage.component"));
+const HomePage = lazy(() => import("./pages/HomePage/HomePage.component"));
 const CheckoutPage = lazy(() =>
-  import("./pages/checkout-page/CheckoutPage.component")
+  import("./pages/CheckoutPage/CheckoutPage.component")
 );
-const AuthPage = lazy(() => import("./pages/auth-page/AuthPage.component"));
+const AuthPage = lazy(() => import("./pages/AuthPage/AuthPage.component"));
 const ReceiptPage = lazy(() =>
-  import("./pages/receipt-page/ReceiptPage.component")
+  import("./pages/ReceiptPage/ReceiptPage.component")
 );
 
 const App = ({ setSignedUser, user: { signedUser } }) => {

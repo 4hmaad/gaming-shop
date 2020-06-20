@@ -1,9 +1,9 @@
 import React from "react";
 
-import CustomButton from "../custom-button/CustomButton.component";
+import CustomButton from "../CustomButton/CustomButton.component";
 
 import GoogleSignInContainer, { TitleContainer } from "./GoogleSignIn.styles";
-import { signInWithGoogle } from "./../../firebase/firebase.utils";
+import { signInWithGoogle } from "../../firebase/firebase.utils";
 
 const GoogleSignIn = () => {
   return (

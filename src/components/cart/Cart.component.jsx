@@ -8,8 +8,8 @@ import CartContainer, {
   CartBottomContainer,
 } from "./Cart.styles";
 
-import StripeCheckoutButton from "../../components/stripe-checkout-button/StripeCheckoutButton.component";
-import CartProduct from "../../components/cart-product/CartProduct.component";
+import StripeCheckoutButton from "../../components/StripeCheckoutButton/StripeCheckoutButton.component";
+import CartProduct from "../../components/CartProduct/CartProduct.component";
 
 const Cart = (props) => {
   /** Cart's state */

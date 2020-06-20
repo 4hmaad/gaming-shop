@@ -1,5 +1,5 @@
 import React from "react";
-import Cart from "../../components/cart/Cart.component";
+import Cart from "../../components/Cart/Cart.component";
 import CheckoutPageContainer, { TitleContainer } from "./CheckoutPage.styles";
 
 const CheckoutPage = () => {

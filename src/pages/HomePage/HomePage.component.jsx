@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import { connect } from "react-redux";
 
-import { updateSearchQuery } from "./../../redux/product/productActions";
+import { updateSearchQuery } from "../../redux/product/productActions";
 
 import HomePageContainer, {
   TopBarContainer,
@@ -11,9 +11,9 @@ import HomePageContainer, {
   ContentContainer,
 } from "./HomePage.styles";
 
-import FormInput from "../../components/form-input/FormInput.component";
-import Sidebar from "../../components/sidebar/Sidebar.component";
-import Products from "../../components/products/Products.component";
+import FormInput from "../../components/FormInput/FormInput.component";
+import Sidebar from "../../components/Sidebar/Sidebar.component";
+import Products from "../../components/Products/Products.component";
 
 const HomePage = ({ updateSearchQuery }) => {
   const handleSearchChange = (e) => {

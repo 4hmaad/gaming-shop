@@ -2,8 +2,8 @@ import React, { useState } from "react";
 
 import { auth } from "../../firebase/firebase.utils";
 
-import FormInput from "../form-input/FormInput.component";
-import CustomButton from "../custom-button/CustomButton.component";
+import FormInput from "../FormInput/FormInput.component";
+import CustomButton from "../CustomButton/CustomButton.component";
 
 import SignInFormContainer, { TitleContainer } from "./SignIn.styles";
 

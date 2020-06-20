@@ -4,9 +4,9 @@ import AuthPageContainer, {
   FormsContainer,
 } from "./AuthPage.styles";
 
-import SignIn from "../../components/sign-in/SignIn.component";
-import SignUp from "../../components/sign-up/SignUp.component";
-import GoogleSignIn from "../../components/google-sign-in/GoogleSignIn.component";
+import SignIn from "../../components/SignIn/SignIn.component";
+import SignUp from "../../components/SignUp/SignUp.component";
+import GoogleSignIn from "../../components/GoogleSignIn/GoogleSignIn.component";
 
 const AuthPage = () => (
   <AuthPageContainer>

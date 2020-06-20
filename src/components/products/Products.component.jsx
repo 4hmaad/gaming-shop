@@ -6,8 +6,8 @@ import { connect } from "react-redux";
 import { fetchProducts } from "../../redux/product/productActions";
 
 import ProductsContainer, { ErrorMessage } from "./Products.styles";
-import Product from "../product/Product.component";
-import Spinner from "../spinner/Spinner.component";
+import Product from "../Product/Product.component";
+import Spinner from "../Spinner/Spinner.component";
 
 const Products = (props) => {
   /** Actions */
