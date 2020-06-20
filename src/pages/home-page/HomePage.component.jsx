@@ -1,4 +1,6 @@
 import React from "react";
+import PropTypes from "prop-types";
+
 import { connect } from "react-redux";
 
 import { updateSearchQuery } from "./../../redux/product/productActions";
@@ -37,6 +39,10 @@ const HomePage = ({ updateSearchQuery }) => {
       </ContentContainer>
     </HomePageContainer>
   );
+};
+
+HomePage.propTypes = {
+  updateSearchQuery: PropTypes.func.isRequired,
 };
 
 export default connect(null, { updateSearchQuery })(HomePage);

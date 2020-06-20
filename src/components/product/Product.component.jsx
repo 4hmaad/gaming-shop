@@ -1,4 +1,6 @@
 import React from "react";
+import PropTypes from "prop-types";
+
 import { connect } from "react-redux";
 
 import { addItem, clearItem } from "./../../redux/cart/cartActions";
@@ -58,6 +60,23 @@ const Product = (props) => {
       )}
     </ProductContainer>
   );
+};
+
+Product.propTypes = {
+  product: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    imageUrl: PropTypes.string.isRequired,
+    developer: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    discount: PropTypes.number.isRequired,
+  }).isRequired,
+
+  cart: PropTypes.shape({
+    cartItems: PropTypes.array.isRequired,
+  }).isRequired,
+
+  addItem: PropTypes.func.isRequired,
+  clearItem: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = ({ cart }) => {

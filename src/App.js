@@ -1,4 +1,6 @@
 import React, { Fragment, useEffect, lazy, Suspense } from "react";
+import PropTypes from "prop-types";
+
 import { Switch, Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
@@ -58,6 +60,13 @@ const App = ({ setSignedUser, user: { signedUser } }) => {
       </Switch>
     </Fragment>
   );
+};
+
+App.propTypes = {
+  user: PropTypes.shape({
+    signedUser: PropTypes.object,
+  }).isRequired,
+  setSignedUser: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = ({ user }) => {

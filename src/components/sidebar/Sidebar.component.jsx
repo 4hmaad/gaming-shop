@@ -1,4 +1,6 @@
 import React from "react";
+import PropTypes from "prop-types";
+
 import { connect } from "react-redux";
 
 import SidebarContainer, { TitleContainer } from "./Sidebar.styles";
@@ -6,7 +8,6 @@ import SidebarContainer, { TitleContainer } from "./Sidebar.styles";
 import CategoriesList from "./../categories-list/CategoriesList.component";
 
 const Sidebar = ({ filters }) => {
-  console.log(filters);
   return (
     <SidebarContainer>
       <TitleContainer>Filters {`(${filters.length})`}</TitleContainer>
@@ -14,6 +15,11 @@ const Sidebar = ({ filters }) => {
     </SidebarContainer>
   );
 };
+
+Sidebar.propTypes = {
+  filters: PropTypes.array.isRequired,
+};
+
 const mapStateToProps = ({ products: { filters } }) => {
   return {
     filters,

@@ -1,4 +1,6 @@
 import React, { useEffect } from "react";
+import PropTypes from "prop-types";
+
 import { connect } from "react-redux";
 
 import { fetchProducts } from "../../redux/product/productActions";
@@ -51,7 +53,7 @@ const Products = (props) => {
         return <Product key={product.id} product={product} />;
       });
     } else if (loading === false && !productsToDisplay.length) {
-      return <ErrorMessage> No Games Found </ErrorMessage>;
+      return <ErrorMessage>No Games Found.</ErrorMessage>;
     }
 
     return <Spinner />;
@@ -60,10 +62,19 @@ const Products = (props) => {
   return <ProductsContainer>{renderProducts()}</ProductsContainer>;
 };
 
-const mapStateToProps = ({ products, cart }) => {
+Products.propTypes = {
+  products: PropTypes.exact({
+    data: PropTypes.array.isRequired,
+    loading: PropTypes.bool.isRequired,
+    filters: PropTypes.array.isRequired,
+    searchQuery: PropTypes.string,
+  }).isRequired,
+  fetchProducts: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = ({ products }) => {
   return {
     products,
-    cart,
   };
 };
 

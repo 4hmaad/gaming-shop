@@ -33,7 +33,7 @@
   },
   "browserslist": {
     "production": [
-      ">0%"
+      ">0.025%"
     ],
     "development": [
       "last 1 chrome version",

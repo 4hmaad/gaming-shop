@@ -1,4 +1,6 @@
 import React from "react";
+import PropTypes from "prop-types";
+
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { auth } from "../../firebase/firebase.utils";
@@ -27,6 +29,15 @@ const Header = ({ user: { signedUser }, cart: { cartItems } }) => (
     </MenuContainer>
   </HeaderContainer>
 );
+
+Header.propTypes = {
+  user: PropTypes.shape({
+    signedUser: PropTypes.object,
+  }).isRequired,
+  cart: PropTypes.shape({
+    cartItems: PropTypes.array.isRequired,
+  }),
+};
 
 const mapStateToProps = ({ user, cart }) => {
   return {

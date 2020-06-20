@@ -1,4 +1,6 @@
 import React from "react";
+import PropTypes from "prop-types";
+
 import { connect } from "react-redux";
 import StripeCheckout from "react-stripe-checkout";
 import { withRouter } from "react-router-dom";
@@ -10,11 +12,14 @@ const StripeCheckoutButton = (props) => {
   /** Actions */
   const { saveOrder, resetCart } = props;
   /** Other Props */
-  const { cart, signedUser } = props;
+  const { cart, user } = props;
   const { history } = props;
 
-  /** Cart */
+  /** Cart' state */
   const { totalPrice } = cart;
+
+  /** User's state */
+  const { signedUser } = user;
 
   const amount = totalPrice * 100;
   const stripeKey =
@@ -45,6 +50,18 @@ const StripeCheckoutButton = (props) => {
       description={`The total amount is $${totalPrice}`}
     />
   );
+};
+
+StripeCheckoutButton.propTypes = {
+  cart: PropTypes.shape({
+    totalPrice: PropTypes.number.isRequired,
+  }).isRequired,
+  user: PropTypes.shape({
+    signedUser: PropTypes.object,
+  }),
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }),
 };
 
 const mapStateToProps = ({ cart, user }) => {

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 import CartContainer, {
@@ -10,7 +11,10 @@ import CartContainer, {
 import StripeCheckoutButton from "../../components/stripe-checkout-button/StripeCheckoutButton.component";
 import CartProduct from "../../components/cart-product/CartProduct.component";
 
-const Cart = ({ cartItems, totalPrice }) => {
+const Cart = (props) => {
+  /** Cart's state */
+  const { cartItems, totalPrice } = props.cart;
+
   const renderCartProducts = () => {
     return cartItems.map((cartItem) => {
       return <CartProduct key={cartItem.id} product={cartItem} />;
@@ -39,8 +43,17 @@ const Cart = ({ cartItems, totalPrice }) => {
   );
 };
 
+Cart.propTypes = {
+  cart: PropTypes.shape({
+    cartItems: PropTypes.array.isRequired,
+    totalPrice: PropTypes.number.isRequired,
+  }).isRequired,
+};
+
 const mapStateToProps = ({ cart }) => {
-  return cart;
+  return {
+    cart,
+  };
 };
 
 export default connect(mapStateToProps)(Cart);
