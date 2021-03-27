@@ -1,11 +1,10 @@
 import React from "react";
+import create from "zustand";
 import CartContainer, {
   HeaderContainer,
   CartProductsContainer,
   CartBottomContainer
 } from "./Cart.styles";
-import create from "zustand";
-
 import StripeCheckoutButton from "../StripeCheckoutButton/StripeCheckoutButton.component";
 import CartProduct from "../CartProduct/CartProduct.component";
 import {
@@ -46,9 +45,7 @@ const Cart = () => {
         <li>Price</li>
         <li>Remove</li>
       </HeaderContainer>
-
       <CartProductsContainer>{renderCartProducts()}</CartProductsContainer>
-
       <CartBottomContainer>
         <span>Total:</span>
         <span> {`$${totalPrice}`} </span>

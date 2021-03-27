@@ -1,4 +1,6 @@
 import React from "react";
+import { useRouteMatch } from "react-router";
+import { useOrder } from "utils/orders";
 import Spinner from "../../components/Spinner/Spinner.component";
 
 import ReceiptPageContainer, {
@@ -8,24 +10,19 @@ import ReceiptPageContainer, {
   GamesHeaderContainer
 } from "./ReceiptPage.styles";
 
-const ReceiptPage = props => {
-  const order = {
-    details: {
-      token: {}
-    },
-    cart: {}
-  };
+const ReceiptPage = () => {
+  const match = useRouteMatch();
+  const { data: order, isLoading, error } = useOrder(match.params?.id);
 
   return (
     <ReceiptPageContainer>
       <TitleContainer> Order Receipt </TitleContainer>
-
-      {false ? (
+      {order ? (
         <ReceiptContainer>
           <ul>
             <li>
               <span>Email:</span>
-              <span>{order.details.token.email}</span>
+              <span>{order.token?.email ?? `Nil`}</span>
             </li>
             <li>
               <span>Receipt date:</span>
@@ -33,7 +30,7 @@ const ReceiptPage = props => {
             </li>
             <li>
               <span>Amount paid:</span>
-              <span>${order.details.cart.totalPrice}</span>
+              <span>${order.cart?.totalPrice ?? `Nil`}</span>
             </li>
           </ul>
           <h1>Games</h1>
@@ -42,11 +39,16 @@ const ReceiptPage = props => {
               <span>Name</span>
               <span>Key</span>
             </GamesHeaderContainer>
-            Cart Items
+            {order.cart?.items?.map((item, i) => (
+              <div key={i}>
+                <span>{item.title}</span>
+                <span>{`ZX-SS-XFF-124F-XXL-444X-YYAZ1`}</span>
+              </div>
+            ))}
           </GamesContainer>
         </ReceiptContainer>
-      ) : order.error ? (
-        <p>{order.error}</p>
+      ) : error && !isLoading ? (
+        <p>{error}</p>
       ) : (
         <Spinner />
       )}
