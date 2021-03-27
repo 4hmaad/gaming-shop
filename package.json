@@ -6,10 +6,13 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
+    "axios": "^0.21.0",
     "firebase": "^7.14.6",
+    "formik": "^2.2.6",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-query": "^3.13.0",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
@@ -20,7 +23,8 @@
     "redux-persist-transform-filter": "0.0.20",
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
-    "styled-components": "^5.1.1"
+    "styled-components": "^5.1.1",
+    "zustand": "^3.3.3"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -30,6 +34,17 @@
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "devDependencies": {
+    "@testing-library/cypress": "^7.0.2",
+    "@testing-library/dom": "^7.29.0",
+    "@testing-library/jest-dom": "^5.11.6",
+    "@testing-library/react": "^11.2.2",
+    "@testing-library/react-hooks": "^3.7.0",
+    "@testing-library/user-event": "^12.6.0",
+    "cypress": "6.4.0",
+    "eslint": "^6.6.0",
+    "prettier": "2.0.0"
   },
   "browserslist": {
     "production": [

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const SidebarContainer = styled.div`
+const FiltersContainer = styled.div`
   grid-area: sidebar;
 `;
 
@@ -11,4 +11,4 @@ export const TitleContainer = styled.h1`
   border-bottom: 1px solid var(--lightGrey);
 `;
 
-export default SidebarContainer;
+export default FiltersContainer;

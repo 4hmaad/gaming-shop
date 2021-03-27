@@ -1,36 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter } from "react-router-dom";
-import { ThemeProvider } from "styled-components";
-import { Provider } from "react-redux";
-import { PersistGate } from "redux-persist/integration/react";
-import "./index.scss";
-import { store, persistor } from "./redux/store";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-
-const theme = {
-  pageWidth: `max-width: 150rem; 
-              margin: 0 auto; 
-              padding:0rem 1rem;
-  `,
-  pageTitle: `display:inline-block;
-              font-size: var(--text-0);
-              font-weight: 400;
-              border-bottom: 2px solid var(--yellow);
-  `,
-};
+import { AppProviders } from "context/index";
+import "./index.scss";
 
 ReactDOM.render(
-  <Provider store={store}>
-    <BrowserRouter>
-      <PersistGate persistor={persistor}>
-        <ThemeProvider theme={theme}>
-          <App />
-        </ThemeProvider>
-      </PersistGate>
-    </BrowserRouter>
-  </Provider>,
+  <AppProviders>
+    <App />
+  </AppProviders>,
   document.getElementById("root")
 );
 

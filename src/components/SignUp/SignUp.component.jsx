@@ -1,87 +1,72 @@
-import React, { useState } from "react";
-
+import React from "react";
 import FormInput from "../FormInput/FormInput.component";
 import CustomButton from "../CustomButton/CustomButton.component";
-
 import SignUpFormContainer, { TitleContainer } from "./SignUp.styles";
-
-import { auth, createUserDocument } from "../../firebase/firebase.utils";
+import { useAuth } from "./../../context/auth-context";
+import { useFormik } from "formik";
 
 const SignUp = () => {
-  const [formValues, setFormValues] = useState({
-    displayName: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
+  const { signUp } = useAuth();
+  const formik = useFormik({
+    initialValues: {
+      name: "",
+      email: "",
+      password: "",
+      confirmPassword: ""
+    },
+    onSubmit: async values => {
+      try {
+        if (values.password !== values.confirmPassword) {
+          throw new Error("Password aren't matching");
+        }
+        await signUp({
+          name: values.name,
+          email: values.email,
+          password: values.password
+        });
+      } catch (error) {
+        console.error({ error: error.message });
+        alert(error.message);
+      }
+    }
   });
 
-  const onFormSubmit = async (e) => {
-    e.preventDefault();
-
-    if (formValues.password !== formValues.confirmPassword) {
-      alert("Password aren't matching");
-      return;
-    }
-
-    try {
-      const { userAuth } = await auth.createUserWithEmailAndPassword(
-        formValues.email,
-        formValues.password
-      );
-
-      await createUserDocument(userAuth, {
-        displayName: formValues.displayName,
-      });
-
-      setFormValues({
-        displayName: "",
-        email: "",
-        password: "",
-        confirmPassword: "",
-      });
-    } catch (error) {
-      console.log(error.message);
-      alert(error.message);
-    }
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-
-    setFormValues({ [name]: value });
-  };
-
   return (
-    <SignUpFormContainer onSubmit={onFormSubmit}>
+    <SignUpFormContainer onSubmit={formik.handleSubmit}>
       <TitleContainer>Haven't Signed Up Yet?</TitleContainer>
       <TitleContainer small>Sign Up With Email</TitleContainer>
       <FormInput
-        name="displayName"
-        value={formValues.displayName}
-        onChange={handleChange}
-        placeholder="Name"
+        name='name'
+        type='text'
+        value={formik.values.name}
+        onChange={formik.handleChange}
+        placeholder='Name'
       />
       <FormInput
-        name="email"
-        type="email"
-        value={formValues.email}
-        onChange={handleChange}
-        placeholder="Email"
+        name='email'
+        type='email'
+        value={formik.values.email}
+        onChange={formik.handleChange}
+        placeholder='Email'
         required
       />
       <FormInput
-        name="password"
-        value={formValues.password}
-        onChange={handleChange}
-        placeholder="Password"
+        name='password'
+        type='password'
+        value={formik.values.password}
+        onChange={formik.handleChange}
+        placeholder='Password'
       />
       <FormInput
-        name="confirmPassword"
-        value={formValues.confirmPassword}
-        onChange={handleChange}
-        placeholder="Confirm Password"
+        name='confirmPassword'
+        type='password'
+        value={formik.values.confirmPassword}
+        onChange={formik.handleChange}
+        placeholder='Confirm Password'
       />
-      <CustomButton primary>Sign Up</CustomButton>
+      <CustomButton type='submit' primary>
+        Sign Up
+      </CustomButton>
     </SignUpFormContainer>
   );
 };

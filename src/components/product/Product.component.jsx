@@ -1,35 +1,20 @@
 import React from "react";
-import PropTypes from "prop-types";
-
-import { connect } from "react-redux";
-
-import { addItem, clearItem } from "./../../redux/cart/cartActions";
-
+import { useCartStore } from "../Cart/Cart.component";
 import ProductContainer, {
   ImageContainer,
   DetailsContainer,
   TitleContainer,
   CategoryContainer,
   DiscountContainer,
-  PriceContainer,
+  PriceContainer
 } from "./Product.styles";
-
 import CustomButton from "../CustomButton/CustomButton.component";
 
-const Product = (props) => {
-  /** Actions */
-  const { addItem, clearItem } = props;
-  /** Current Product */
-  const { product } = props;
-  /** Cart State */
-  const {
-    cart: { cartItems },
-  } = props;
+const Product = props => {
+  const { items: cartItems, addItem, clearItem } = useCartStore();
 
-  const { title, imageUrl, price, discount, developer } = product;
-
-  /** checks if a product is added to cart */
-  const isAddedToCart = cartItems.find(({ id }) => id === product.id);
+  const { title, imageUrl, price, discount, developer } = props.product;
+  const isAddedToCart = cartItems.find(({ id }) => id === props.product.id);
 
   return (
     <ProductContainer>
@@ -50,11 +35,11 @@ const Product = (props) => {
       </DetailsContainer>
 
       {isAddedToCart ? (
-        <CustomButton primary onClick={() => clearItem(product)}>
+        <CustomButton primary onClick={() => clearItem(props.product)}>
           Added
         </CustomButton>
       ) : (
-        <CustomButton primary inverted onClick={() => addItem(product)}>
+        <CustomButton primary inverted onClick={() => addItem(props.product)}>
           Add to Cart
         </CustomButton>
       )}
@@ -62,26 +47,4 @@ const Product = (props) => {
   );
 };
 
-Product.propTypes = {
-  product: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    imageUrl: PropTypes.string.isRequired,
-    developer: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    discount: PropTypes.number.isRequired,
-  }).isRequired,
-
-  cart: PropTypes.shape({
-    cartItems: PropTypes.array.isRequired,
-  }).isRequired,
-
-  addItem: PropTypes.func.isRequired,
-  clearItem: PropTypes.func.isRequired,
-};
-
-const mapStateToProps = ({ cart }) => {
-  return {
-    cart,
-  };
-};
-export default connect(mapStateToProps, { addItem, clearItem })(Product);
+export default Product;

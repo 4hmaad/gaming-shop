@@ -1,42 +1,29 @@
 import React from "react";
-import PropTypes from "prop-types";
 
-import { connect } from "react-redux";
 import StripeCheckout from "react-stripe-checkout";
-import { withRouter } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import { useAuth } from "context/auth-context";
+import { useCartStore } from "components/Cart/Cart.component";
 
-import { resetCart } from "./../../redux/cart/cartActions";
-import { saveOrder } from "./../../redux/order/orderActions";
+const StripeCheckoutWrapper = props => {
+  const history = useHistory();
+  const { user } = useAuth();
+  const { clearCart } = useCartStore();
 
-const StripeCheckoutButton = (props) => {
-  /** Actions */
-  const { saveOrder, resetCart } = props;
-  /** Other Props */
-  const { cart, user } = props;
-  const { history } = props;
-
-  /** Cart' state */
-  const { totalPrice } = cart;
-
-  /** User's state */
-  const { signedUser } = user;
-
-  const amount = totalPrice * 100;
+  const amount = props.totalPrice * 100;
+  // Don't lose your shit! this is just a test key.
   const stripeKey =
     "pk_test_51GsNRsC8KqWYzqmMRBnkvQndy4pspHb0fQhisovpR9sRg3EHPjIddk4ivO1BT6auWrTD8ONyfEpyZZpIKwjakISy00xG47EOe3";
 
-  const onToken = async (token) => {
-    var user = signedUser ? signedUser : "unknown";
-
+  const onToken = async token => {
+    const user = user ? user.email : "anonymous";
     try {
-      await saveOrder({ token, user, cart });
-      resetCart();
+      clearCart();
       alert("payment successful, redirecting you to the receipt page.");
       history.push(`/order/receipt/${token.id}`);
     } catch (err) {
       console.error(err);
       alert("Error occurred! please try again");
-      return;
     }
   };
 
@@ -46,33 +33,11 @@ const StripeCheckoutButton = (props) => {
       stripeKey={stripeKey}
       amount={amount}
       bitcoin
+      disabled={!user}
       name={`Gamify`}
-      description={`The total amount is $${totalPrice}`}
+      description={`Boss you gotta pay $${props.totalPrice}`}
     />
   );
 };
 
-StripeCheckoutButton.propTypes = {
-  cart: PropTypes.shape({
-    totalPrice: PropTypes.number.isRequired,
-  }).isRequired,
-  user: PropTypes.shape({
-    signedUser: PropTypes.object,
-  }),
-  history: PropTypes.shape({
-    push: PropTypes.func.isRequired,
-  }),
-};
-
-const mapStateToProps = ({ cart, user }) => {
-  return {
-    cart,
-    user,
-  };
-};
-
-const WrappedComponent = connect(mapStateToProps, { resetCart, saveOrder })(
-  StripeCheckoutButton
-);
-
-export default withRouter(WrappedComponent);
+export default StripeCheckoutWrapper;

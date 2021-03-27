@@ -1,11 +1,10 @@
 import React from "react";
-
 import CustomButton from "../CustomButton/CustomButton.component";
-
 import GoogleSignInContainer, { TitleContainer } from "./GoogleSignIn.styles";
-import { signInWithGoogle } from "../../firebase/firebase.utils";
+import { useAuth } from "context/auth-context";
 
 const GoogleSignIn = () => {
+  const { signInWithGoogle } = useAuth();
   return (
     <GoogleSignInContainer>
       <TitleContainer>Can't Do Any of Them?</TitleContainer>
