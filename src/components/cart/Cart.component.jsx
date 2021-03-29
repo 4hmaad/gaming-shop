@@ -1,22 +1,37 @@
 import React from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-
+import create from "zustand";
 import CartContainer, {
   HeaderContainer,
   CartProductsContainer,
-  CartBottomContainer,
+  CartBottomContainer
 } from "./Cart.styles";
+import StripeCheckoutButton from "../StripeCheckoutButton/StripeCheckoutButton.component";
+import CartProduct from "../CartProduct/CartProduct.component";
+import {
+  addItem,
+  clearItem,
+  removeItem,
+  calculateTotalPrice
+} from "../../utils/cart";
 
-import StripeCheckoutButton from "../../components/StripeCheckoutButton/StripeCheckoutButton.component";
-import CartProduct from "../../components/CartProduct/CartProduct.component";
+export const useCartStore = create(set => ({
+  items: [],
+  clearItem: item =>
+    set(state => ({ ...state, items: clearItem(item, state.items) })),
+  addItem: item =>
+    set(state => ({ ...state, items: addItem(item, state.items) })),
+  removeItem: item =>
+    set(state => ({ ...state, items: removeItem(item, state.items) })),
+  clearCart: () => set(state => ({ ...state, items: [] }))
+}));
 
-const Cart = (props) => {
-  /** Cart's state */
-  const { cartItems, totalPrice } = props.cart;
+const Cart = () => {
+  const { items: cartItems } = useCartStore();
+
+  const totalPrice = calculateTotalPrice(cartItems);
 
   const renderCartProducts = () => {
-    return cartItems.map((cartItem) => {
+    return cartItems.map(cartItem => {
       return <CartProduct key={cartItem.id} product={cartItem} />;
     });
   };
@@ -30,30 +45,16 @@ const Cart = (props) => {
         <li>Price</li>
         <li>Remove</li>
       </HeaderContainer>
-
       <CartProductsContainer>{renderCartProducts()}</CartProductsContainer>
-
       <CartBottomContainer>
         <span>Total:</span>
-
         <span> {`$${totalPrice}`} </span>
-        {cartItems.length ? <StripeCheckoutButton /> : null}
+        {cartItems.length ? (
+          <StripeCheckoutButton totalPrice={totalPrice} />
+        ) : null}
       </CartBottomContainer>
     </CartContainer>
   );
 };
 
-Cart.propTypes = {
-  cart: PropTypes.shape({
-    cartItems: PropTypes.array.isRequired,
-    totalPrice: PropTypes.number.isRequired,
-  }).isRequired,
-};
-
-const mapStateToProps = ({ cart }) => {
-  return {
-    cart,
-  };
-};
-
-export default connect(mapStateToProps)(Cart);
+export default Cart;

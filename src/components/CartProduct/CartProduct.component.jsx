@@ -1,21 +1,15 @@
+import { useCartStore } from "components/Cart/Cart.component";
 import React from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-
-import { addItem, removeItem, clearItem } from "./../../redux/cart/cartActions";
-
 import CartProductContainer, {
   ImageContainer,
   TitleContainer,
   TextContainer,
-  IconButton,
+  IconButton
 } from "./CartProduct.styles";
 
-const CartProduct = (props) => {
-  /** Actions */
-  const { addItem, removeItem, clearItem } = props;
-  /** The passed product */
+const CartProduct = props => {
   const { title, imageUrl, price, quantity } = props.product;
+  const { addItem, removeItem, clearItem } = useCartStore();
 
   return (
     <CartProductContainer>
@@ -36,17 +30,4 @@ const CartProduct = (props) => {
   );
 };
 
-CartProduct.propTypes = {
-  product: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    imageUrl: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    quantity: PropTypes.number.isRequired,
-  }).isRequired,
-
-  addItem: PropTypes.func.isRequired,
-  removeItem: PropTypes.func.isRequired,
-  clearItem: PropTypes.func.isRequired,
-};
-
-export default connect(null, { addItem, removeItem, clearItem })(CartProduct);
+export default CartProduct;

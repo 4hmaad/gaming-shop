@@ -1,52 +1,52 @@
-import React, { useState } from "react";
-
-import { auth } from "../../firebase/firebase.utils";
-
+import React from "react";
 import FormInput from "../FormInput/FormInput.component";
 import CustomButton from "../CustomButton/CustomButton.component";
-
 import SignInFormContainer, { TitleContainer } from "./SignIn.styles";
+import { useAuth } from "context/auth-context";
+import { useFormik } from "formik";
 
 const SignIn = () => {
-  const [formValues, setFormValues] = useState({ email: "", password: "" });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-
-    setFormValues({ [name]: value });
-  };
-
-  const onSubmitForm = async (e) => {
-    e.preventDefault();
-    const { email, password } = formValues;
-
-    try {
-      await auth.signInWithEmailAndPassword(email, password);
-    } catch (error) {
-      console.log(error.message);
-      alert(error.message);
+  const { signIn } = useAuth();
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: ""
+    },
+    onSubmit: async values => {
+      try {
+        await signIn({
+          email: values.email,
+          password: values.password
+        });
+      } catch (error) {
+        console.error({ error: error.message });
+        alert(error.message);
+      }
     }
-  };
+  });
 
   return (
-    <SignInFormContainer onSubmit={onSubmitForm}>
+    <SignInFormContainer onSubmit={formik.handleSubmit}>
       <TitleContainer>Have Signed Up Already?</TitleContainer>
-      <TitleContainer small>Sign In with Email or Google</TitleContainer>
+      <TitleContainer small>Sign In with Email</TitleContainer>
       <FormInput
-        name="email"
-        type="email"
-        value={formValues.email}
-        onChange={handleChange}
-        placeholder="Email"
+        name='email'
+        type='email'
+        value={formik.values.email}
+        onChange={formik.handleChange}
+        placeholder='Email'
+        required
       />
       <FormInput
-        name="password"
-        type="password"
-        value={formValues.password}
-        onChange={handleChange}
-        placeholder="Password"
+        name='password'
+        type='password'
+        value={formik.values.password}
+        onChange={formik.handleChange}
+        placeholder='Password'
       />
-      <CustomButton primary>Sign In</CustomButton>
+      <CustomButton type='submit' primary>
+        Sign In
+      </CustomButton>
     </SignInFormContainer>
   );
 };

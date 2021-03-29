@@ -1,49 +1,46 @@
 import React from "react";
-import PropTypes from "prop-types";
-
 import { Link } from "react-router-dom";
-import { connect } from "react-redux";
-import { auth } from "../../firebase/firebase.utils";
 
 import HeaderContainer, {
   LogoContainer,
   MenuContainer,
-  CartSpanContainer,
+  CartSpanContainer
 } from "./Header.styles";
 import { ReactComponent as CartIcon } from "../../assets/cart.svg";
+import { useCartStore } from "components/Cart/Cart.component";
+import { calculateTotalItems } from "utils/cart";
+import { useAuth } from "context/auth-context";
 
-const Header = ({ user: { signedUser }, cart: { cartItems } }) => (
-  <HeaderContainer>
-    <LogoContainer to="/">Gamify</LogoContainer>
-    <MenuContainer>
-      {!signedUser ? (
-        <Link to="/auth">sign in</Link>
-      ) : (
-        <div onClick={() => auth.signOut()}>sign out</div>
-      )}
+const Header = () => {
+  const { items } = useCartStore();
+  const { signOut, user } = useAuth();
 
-      <Link to="/checkout" style={{ position: "relative" }}>
-        <CartIcon style={{ width: "2.8rem", height: "2.8rem" }} />
-        <CartSpanContainer>{cartItems.length}</CartSpanContainer>
-      </Link>
-    </MenuContainer>
-  </HeaderContainer>
-);
-
-Header.propTypes = {
-  user: PropTypes.shape({
-    signedUser: PropTypes.object,
-  }).isRequired,
-  cart: PropTypes.shape({
-    cartItems: PropTypes.array.isRequired,
-  }),
+  return (
+    <HeaderContainer>
+      <LogoContainer to='/'>Gamify</LogoContainer>
+      <MenuContainer>
+        {!user ? (
+          <Link to='/auth'>sign in</Link>
+        ) : (
+          <div
+            onClick={async () => {
+              try {
+                await signOut();
+              } catch (error) {
+                console.log({ error });
+                alert(error.message);
+              }
+            }}
+          >
+            sign out
+          </div>
+        )}
+        <Link to='/checkout' style={{ position: "relative" }}>
+          <CartIcon style={{ width: "2.8rem", height: "2.8rem" }} />
+          <CartSpanContainer>{calculateTotalItems(items)}</CartSpanContainer>
+        </Link>
+      </MenuContainer>
+    </HeaderContainer>
+  );
 };
-
-const mapStateToProps = ({ user, cart }) => {
-  return {
-    user,
-    cart,
-  };
-};
-
-export default connect(mapStateToProps)(Header);
+export default Header;
